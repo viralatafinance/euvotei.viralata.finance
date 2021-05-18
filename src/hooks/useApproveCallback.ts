@@ -1,8 +1,8 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@pancakeswap-libs/sdk'
+import { Trade, TokenAmount, CurrencyAmount, ETHER, JSBI } from '@pancakeswap-libs/sdk'
 import { useCallback, useMemo } from 'react'
-import { ROUTER_ADDRESS } from '../constants'
+import { ROUTER_ADDRESS, COLLECTIBLE_FACTORY_ADDRESS } from '../constants'
 import { useTokenAllowance } from '../data/Allowances'
 import { Field } from '../state/swap/actions'
 import { useTransactionAdder, useHasPendingApproval } from '../state/transactions/hooks'
@@ -19,10 +19,7 @@ export enum ApprovalState {
 }
 
 // returns a variable indicating the state of the approval and a function which approves if necessary or early returns
-export function useApproveCallback(
-  amountToApprove?: CurrencyAmount,
-  spender?: string
-): [ApprovalState, () => Promise<void>] {
+export function useApproveCallback(amountToApprove?: CurrencyAmount, spender?: string): [ApprovalState, () => Promise<void>] {
   const { account } = useActiveWeb3React()
   const token = amountToApprove instanceof TokenAmount ? amountToApprove.token : undefined
   const currentAllowance = useTokenAllowance(token, account ?? undefined, spender)
@@ -36,17 +33,14 @@ export function useApproveCallback(
     if (!currentAllowance) return ApprovalState.UNKNOWN
 
     // amountToApprove will be defined if currentAllowance is
-    return currentAllowance.lessThan(amountToApprove)
-      ? pendingApproval
-        ? ApprovalState.PENDING
-        : ApprovalState.NOT_APPROVED
-      : ApprovalState.APPROVED
+    return currentAllowance.lessThan(amountToApprove) ? (pendingApproval ? ApprovalState.PENDING : ApprovalState.NOT_APPROVED) : ApprovalState.APPROVED
   }, [amountToApprove, currentAllowance, pendingApproval, spender])
 
   const tokenContract = useTokenContract(token?.address)
   const addTransaction = useTransactionAdder()
 
   const approve = useCallback(async (): Promise<void> => {
+
     if (approvalState !== ApprovalState.NOT_APPROVED) {
       console.error('approve was called unnecessarily')
       return
@@ -100,9 +94,12 @@ export function useApproveCallback(
 
 // wraps useApproveCallback in the context of a swap
 export function useApproveCallbackFromTrade(trade?: Trade, allowedSlippage = 0) {
-  const amountToApprove = useMemo(
-    () => (trade ? computeSlippageAdjustedAmounts(trade, allowedSlippage)[Field.INPUT] : undefined),
-    [trade, allowedSlippage]
-  )
+  const amountToApprove = useMemo(() => (trade ? computeSlippageAdjustedAmounts(trade, allowedSlippage)[Field.INPUT] : undefined), [trade, allowedSlippage])
   return useApproveCallback(amountToApprove, ROUTER_ADDRESS)
 }
+
+export function useApproveCallbackCollectibleFactory(currency?: CurrencyAmount): [ApprovalState, () => Promise<void>] {
+  const { chainId } = useActiveWeb3React()
+  return useApproveCallback(currency, chainId ? COLLECTIBLE_FACTORY_ADDRESS[chainId] : undefined)
+}
+

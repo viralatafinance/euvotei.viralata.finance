@@ -11,17 +11,18 @@ const ButtonCTA = styled(Button)`
   box-shadow: none !important;
   margin: 10px 0px 0px !important;
   width: 100% !important;
+  text-transform: none !important;
 
   background-color: #4bf2cd !important;
-  color: #fff !important;
+  color: #000 !important;
 
   &:hover {
     background-color: #4bf2cd !important;
   }
-
+  
   &:disabled {
-    background-color: #eee !important;
-    color: #999 !important;
+    background-color:#4bf2cd !important;
+    color: #333 !important;
   }
 `
 export default ButtonCTA;
