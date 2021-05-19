@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useContext, useState } from 'react'
-import { Text } from '@geist-ui/react'
+import { Text, useMediaQuery } from '@geist-ui/react'
 import Tilt from 'react-tilt'
 import styled, { ThemeContext } from 'styled-components'
 import { Wrapper } from '../../components/swap/styleds'
@@ -219,10 +219,12 @@ const Donate = () => {
   const collectible = useCollectibleEditions()
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
   const [state, dispatch] = React.useReducer(slidesReducer, initialState)
+  const isDesktop = useMediaQuery('md', { match: 'up' })
+  const cName = isDesktop ? 'slides' : 'slides slides-mobile';
 
   return (
     <div style={{ zIndex: 4, flex: 1, display: 'flex' }}>
-      <div className="slides">
+      <div className={cName}>
         <button onClick={() => dispatch({ type: 'PREV' })}>‹</button>
 
         {[...slides, ...slides, ...slides].map((slide, i) => {

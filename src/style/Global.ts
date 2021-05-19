@@ -35,7 +35,20 @@ const GlobalStyle = createGlobalStyle`
     border: 1px solid #4bf2cd
   }
 
-  
+.slides-mobile {
+  overflow: hidden;
+}
+ 
+.slides-mobile > button:first-child {
+  left: 0px !important;
+} 
+
+.slides-mobile > button:last-child {
+  right: 0px !important;;
+}
+
+
+
 .slides {
 
   flex: 1;
