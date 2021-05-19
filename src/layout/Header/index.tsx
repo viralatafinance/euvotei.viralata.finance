@@ -26,7 +26,7 @@ const Logo = styled.a`
 
 const LogoImage = styled.img`
   max-height: 220px !important;
-  
+
 `
 
 const StyledConnect = styled(Tag)`
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
       <ConnectModal isOpen={connectModal.visible} onDismiss={() => connectModal.setVisible(false)} login={handleLogin} />
       <AccountModal isOpen={accountModal.visible} onDismiss={() => accountModal.setVisible(false)} account={account || ''} logout={deactivate} />
       <Grid.Container justify="center">
-        <Logo href="https://viralata.finance">
+        <Logo href="https://dogira.viralata.finance">
           <LogoImage src={isDesktop ? '/images/logo-black.png' : '/images/logo.png'} alt="Vira-lata Finance" />
         </Logo>
         {/* <Grid xs alignItems="center" justify="flex-end" />
