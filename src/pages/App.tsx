@@ -36,13 +36,14 @@ const ContentWrapper = styled.div`
     top: 0;
     left: 0;
     width: 100vw;
-    min-height: 100%;
+    min-height: 100vh;
     background-image: url(images/sunset-bg.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     opacity: 1;
     z-index: 1;
+    height:100%;
   }
 `
 

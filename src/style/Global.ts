@@ -54,7 +54,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 5rem;
     width: 5rem;
     height: 5rem;
-    top: 30%;
+    top: 50%;
     transition: opacity 0.3s;
     opacity: 0.7;
     z-index: 5;
@@ -68,10 +68,10 @@ const GlobalStyle = createGlobalStyle`
     }
 
     &:first-child {
-      left: -50%;
+      left: 10px;
     }
     &:last-child {
-      right: -50%;
+      right:  10px;
     }
   }
 }
@@ -89,16 +89,15 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .slideContent {
-  width: 500px;
-  height: 600px;
-  background-size: contain;
+  width:  45vh;
+  height: 60vh;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   transition: transform 0.5s ease-in-out;
   opacity: 0.5;
-  background-color: #03fcfc;
   padding: 20px;
-  border-radius: 13px;
+  border-radius: 10px;
   --filter: hue-rotate(250deg);
 
   display: grid;

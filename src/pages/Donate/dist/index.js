@@ -44,6 +44,60 @@ var slides = [
         description: '1/50',
         image: './images/placeholder.jpg'
     },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'Exclusive NFT Collection',
+        description: '1/50',
+        image: './images/placeholder.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'Exclusive NFT Collection',
+        description: '1/50',
+        image: './images/placeholder.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'Exclusive NFT Collection',
+        description: '1/50',
+        image: './images/placeholder.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'Exclusive NFT Collection',
+        description: '1/50',
+        image: './images/placeholder.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'Exclusive NFT Collection',
+        description: '1/50',
+        image: './images/placeholder.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'Exclusive NFT Collection',
+        description: '1/50',
+        image: './images/placeholder.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'Exclusive NFT Collection',
+        description: '1/50',
+        image: './images/placeholder.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'Exclusive NFT Collection',
+        description: '1/50',
+        image: './images/placeholder.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'Exclusive NFT Collection',
+        description: '1/50',
+        image: './images/placeholder.jpg'
+    },
 ];
 function useTilt(active) {
     var ref = react_1["default"].useRef(null);

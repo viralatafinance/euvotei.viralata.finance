@@ -59,6 +59,60 @@ const slides = [
     description: '1/50',
     image: './images/placeholder.jpg',
   },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'Exclusive NFT Collection',
+    description: '1/50',
+    image: './images/placeholder.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'Exclusive NFT Collection',
+    description: '1/50',
+    image: './images/placeholder.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'Exclusive NFT Collection',
+    description: '1/50',
+    image: './images/placeholder.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'Exclusive NFT Collection',
+    description: '1/50',
+    image: './images/placeholder.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'Exclusive NFT Collection',
+    description: '1/50',
+    image: './images/placeholder.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'Exclusive NFT Collection',
+    description: '1/50',
+    image: './images/placeholder.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'Exclusive NFT Collection',
+    description: '1/50',
+    image: './images/placeholder.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'Exclusive NFT Collection',
+    description: '1/50',
+    image: './images/placeholder.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'Exclusive NFT Collection',
+    description: '1/50',
+    image: './images/placeholder.jpg',
+  },
 ]
 
 function useTilt(active) {
