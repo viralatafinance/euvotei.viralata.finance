@@ -172,7 +172,7 @@ var Donate = function () {
     var collectible = Collectibles_1.useCollectibleEditions();
     var _a = react_1.useState(false), confirmModalVisible = _a[0], setConfirmModalVisible = _a[1];
     var _b = react_1["default"].useReducer(slidesReducer, initialState), state = _b[0], dispatch = _b[1];
-    return (react_1["default"].createElement("div", { style: { zIndex: 4 } },
+    return (react_1["default"].createElement("div", { style: { zIndex: 4, flex: 1, display: 'flex' } },
         react_1["default"].createElement("div", { className: "slides" },
             react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'PREV' }); } }, "\u2039"),
             __spreadArrays(slides, slides, slides).map(function (slide, i) {

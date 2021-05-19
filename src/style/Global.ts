@@ -38,7 +38,8 @@ const GlobalStyle = createGlobalStyle`
   
 .slides {
 
-  margin-top: 320px;
+  flex: 1;
+  align-self: center;
 
   display: grid;
   > .slide {
@@ -54,7 +55,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 5rem;
     width: 5rem;
     height: 5rem;
-    top: 50%;
+    top: 47%;
     transition: opacity 0.3s;
     opacity: 0.7;
     z-index: 5;
@@ -68,10 +69,10 @@ const GlobalStyle = createGlobalStyle`
     }
 
     &:first-child {
-      left: 10px;
+      left: 5px;
     }
     &:last-child {
-      right:  10px;
+      right:  5px;
     }
   }
 }

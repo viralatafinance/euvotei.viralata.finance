@@ -28,6 +28,7 @@ const ContentWrapper = styled.div`
   flex: 1;
   z-index: 2;
   min-height: 100vh;
+  padding-top: 12vh;
 
   ::after {
     content: '';

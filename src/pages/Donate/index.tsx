@@ -221,7 +221,7 @@ const Donate = () => {
   const [state, dispatch] = React.useReducer(slidesReducer, initialState)
 
   return (
-    <div style={{ zIndex: 4 }}>
+    <div style={{ zIndex: 4, flex: 1, display: 'flex' }}>
       <div className="slides">
         <button onClick={() => dispatch({ type: 'PREV' })}>‹</button>
 
