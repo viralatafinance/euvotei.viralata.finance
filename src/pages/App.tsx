@@ -38,7 +38,7 @@ const ContentWrapper = styled.div`
     left: 0;
     width: 100vw;
     min-height: 100vh;
-    background-image: url(images/sunset-bg.png);
+    background-image: url(images/sunset-bg-dark.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

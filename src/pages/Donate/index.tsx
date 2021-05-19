@@ -52,67 +52,13 @@ export const StyledTilt = styled(Tilt)`
   max-width: 400px;
 `
 
-const slides = [
+const slides = [  
   {
     title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'Exclusive NFT Collection',
-    description: '1/50',
-    image: './images/placeholder.jpg',
-  },
+    subtitle: 'NFT Collection',
+    description: 'soon',
+    image: './images/reau-dogira-1.jpg',
+  }
 ]
 
 function useTilt(active) {
@@ -189,7 +135,7 @@ function Slide({ slide, offset }) {
   const myStyle = {
     '--offset': offset,
     '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1,
-    filter: !active ? 'hue-rotate(90deg)' : 'none',
+    // filter: !active ? 'hue-rotate(90deg)' : 'none',
   } as React.CSSProperties
 
   return (
@@ -220,7 +166,7 @@ const Donate = () => {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
   const [state, dispatch] = React.useReducer(slidesReducer, initialState)
   const isDesktop = useMediaQuery('md', { match: 'up' })
-  const cName = isDesktop ? 'slides' : 'slides slides-mobile';
+  const cName = isDesktop ? 'slides' : 'slides slides-mobile'
 
   return (
     <div style={{ zIndex: 4, flex: 1, display: 'flex' }}>

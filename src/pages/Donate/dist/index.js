@@ -40,64 +40,10 @@ exports.StyledTilt = styled_components_1["default"](react_tilt_1["default"])(tem
 var slides = [
     {
         title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'Exclusive NFT Collection',
-        description: '1/50',
-        image: './images/placeholder.jpg'
-    },
+        subtitle: 'NFT Collection',
+        description: 'soon',
+        image: './images/reau-dogira-1.jpg'
+    }
 ];
 function useTilt(active) {
     var ref = react_1["default"].useRef(null);
@@ -152,8 +98,7 @@ function Slide(_a) {
     var ref = useTilt(active);
     var myStyle = {
         '--offset': offset,
-        '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1,
-        filter: !active ? 'hue-rotate(90deg)' : 'none'
+        '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1
     };
     return (react_1["default"].createElement("div", { ref: ref, className: "slide", "data-active": active, style: myStyle },
         react_1["default"].createElement("div", { className: "slideBackground" }),

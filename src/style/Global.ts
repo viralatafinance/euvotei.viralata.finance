@@ -37,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
 
 .slides-mobile {
   overflow: hidden;
+  margin-top: -5vh;
 }
  
 .slides-mobile > button:first-child {
@@ -103,16 +104,15 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .slideContent {
-  width:  45vh;
-  height: 60vh;
+  width:  40vh;
+  height: 45vh;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   transition: transform 0.5s ease-in-out;
-  opacity: 0.5;
+  opacity: 0.05;
   padding: 20px;
   border-radius: 10px;
-  --filter: hue-rotate(250deg);
 
   display: grid;
   align-content: flex-end;
