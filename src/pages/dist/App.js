@@ -52,8 +52,9 @@ var redirects_1 = require("./Donate/redirects");
 var languageCodes_1 = require("../constants/localisation/languageCodes");
 var LanguageContext_1 = require("../hooks/LanguageContext");
 var TranslationsContext_1 = require("../hooks/TranslationsContext");
+var useTheme_1 = require("../hooks/useTheme");
 var AppWrapper = styled_components_1["default"].div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex-flow: column;\n  align-items: flex-start;\n"], ["\n  display: flex;\n  flex-flow: column;\n  align-items: flex-start;\n"])));
-var ContentWrapper = styled_components_1["default"].div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  padding: 0px 0px;\n  align-items: center;\n  flex: 1;\n  z-index: 2;\n  min-height: 100vh;\n  padding-top: 12vh;\n\n  ::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    min-height: 100vh;\n    background-image: url(images/sunset-bg-dark.png);\n    background-size: cover;\n    background-repeat: no-repeat;\n    background-position: center;\n    opacity: 1;\n    z-index: 1;\n    height:100%;\n  }\n"], ["\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  padding: 0px 0px;\n  align-items: center;\n  flex: 1;\n  z-index: 2;\n  min-height: 100vh;\n  padding-top: 12vh;\n\n  ::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    min-height: 100vh;\n    background-image: url(images/sunset-bg-dark.png);\n    background-size: cover;\n    background-repeat: no-repeat;\n    background-position: center;\n    opacity: 1;\n    z-index: 1;\n    height:100%;\n  }\n"])));
+var ContentWrapper = styled_components_1["default"].div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  padding: 0px 0px;\n  align-items: center;\n  flex: 1;\n  z-index: 2;\n  min-height: 100vh;\n  padding-top: 12vh;\n\n  ::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    min-height: 100vh;\n    background-color: ", ";\n    background-image: ", ";\n    background-size: cover;\n    background-repeat: no-repeat;\n    background-position: center;\n    opacity: 1;\n    z-index: 1;\n    height: 100%;\n  }\n"], ["\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  padding: 0px 0px;\n  align-items: center;\n  flex: 1;\n  z-index: 2;\n  min-height: 100vh;\n  padding-top: 12vh;\n\n  ::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    min-height: 100vh;\n    background-color: ", ";\n    background-image: ", ";\n    background-size: cover;\n    background-repeat: no-repeat;\n    background-position: center;\n    opacity: 1;\n    z-index: 1;\n    height: 100%;\n  }\n"])), function (props) { return (props.theme.isDark ? '#000048' : '#fea604'); }, function (props) { return (props.theme.isDark ? 'url(images/sunset-bg-dark.jpg)' : 'url(images/sunset-bg.jpg)'); });
 function App() {
     var _this = this;
     var _a = react_1.useState(undefined), selectedLanguage = _a[0], setSelectedLanguage = _a[1];
@@ -61,6 +62,7 @@ function App() {
     var _c = react_1.useState([]), translations = _c[0], setTranslations = _c[1];
     var apiKey = "" + process.env.REACT_APP_CROWDIN_APIKEY;
     var projectId = parseInt("" + process.env.REACT_APP_CROWDIN_PROJECTID);
+    var _d = useTheme_1["default"](), isDark = _d.isDark, toggleTheme = _d.toggleTheme, theme = _d.theme;
     var fileId = 6;
     var credentials = {
         token: apiKey

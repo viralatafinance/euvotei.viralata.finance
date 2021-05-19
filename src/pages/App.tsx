@@ -12,6 +12,7 @@ import { RedirectPathToDonateOnly } from './Donate/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
+import useTheme from '../hooks/useTheme'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -38,13 +39,14 @@ const ContentWrapper = styled.div`
     left: 0;
     width: 100vw;
     min-height: 100vh;
-    background-image: url(images/sunset-bg-dark.png);
+    background-color: ${(props) => (props.theme.isDark ? '#000048' : '#fea604')};
+    background-image: ${(props) => (props.theme.isDark ? 'url(images/sunset-bg-dark.jpg)' : 'url(images/sunset-bg.jpg)')};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     opacity: 1;
     z-index: 1;
-    height:100%;
+    height: 100%;
   }
 `
 
@@ -54,6 +56,7 @@ export default function App() {
   const [translations, setTranslations] = useState<Array<any>>([])
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
+  const { isDark, toggleTheme, theme } = useTheme()
   const fileId = 6
 
   const credentials: Credentials = {

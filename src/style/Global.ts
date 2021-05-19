@@ -37,7 +37,22 @@ const GlobalStyle = createGlobalStyle`
 
 .slides-mobile {
   overflow: hidden;
-  margin-top: -5vh;
+  margin-top: 3vh;
+    
+  .slideContent {
+    width:  45vh;
+    height: 65vh;
+  }
+
+  
+  .slideSubtitle {    
+    font-size: 1.2rem !important;
+  }
+
+  .slideTitle {
+    font-size: 1.7rem !important;
+  }
+
 }
  
 .slides-mobile > button:first-child {
@@ -67,8 +82,6 @@ const GlobalStyle = createGlobalStyle`
     color: white;
     position: absolute;
     font-size: 5rem;
-    width: 5rem;
-    height: 5rem;
     top: 47%;
     transition: opacity 0.3s;
     opacity: 0.7;
@@ -83,10 +96,10 @@ const GlobalStyle = createGlobalStyle`
     }
 
     &:first-child {
-      left: 5px;
+      left: 20px;
     }
     &:last-child {
-      right:  5px;
+      right:  20px;
     }
   }
 }
@@ -104,9 +117,9 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .slideContent {
-  width:  40vh;
-  height: 45vh;
-  background-size: cover;
+  width:  55vh;
+  height: 60vh;
+  background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
   transition: transform 0.5s ease-in-out;
@@ -144,8 +157,6 @@ const GlobalStyle = createGlobalStyle`
   
   .slideSubtitle {
     font-size: 1rem;
-
-    
   }
 
   .slideDescription {

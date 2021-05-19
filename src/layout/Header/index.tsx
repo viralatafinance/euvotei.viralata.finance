@@ -1,12 +1,13 @@
 import { Grid, Page, Tag, useMediaQuery, useModal } from '@geist-ui/react'
+import { Sun, Moon } from '@geist-ui/react-icons'
 import { ConnectorNames } from '@pancakeswap-libs/uikit'
-import { useWalletModal } from 'components/WalletModal'
+import useTheme from 'hooks/useTheme'
 import ConnectModal from 'components/WalletModal/ConnectModal'
 import AccountModal from 'components/WalletModal/AccountModal'
 import { useWeb3React } from '@web3-react/core'
 import { connectorsByName } from 'connectors'
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 
 const StyledPageHeader = styled(Page.Header)`
   padding: 40px;
@@ -26,7 +27,6 @@ const Logo = styled.a`
 
 const LogoImage = styled.img`
   max-height: 220px !important;
-
 `
 
 const StyledConnect = styled(Tag)`
@@ -55,6 +55,7 @@ const StyledConnect = styled(Tag)`
 const Header: React.FC = () => {
   const connectModal = useModal(false)
   const accountModal = useModal(false)
+  const { isDark, toggleTheme, theme } = useTheme()
 
   const isDesktop = useMediaQuery('md', { match: 'up' })
 
@@ -67,6 +68,10 @@ const Header: React.FC = () => {
     }
   }
 
+  const switchLightMode = () => {
+    toggleTheme()
+  }
+
   return (
     <StyledPageHeader>
       <ConnectModal isOpen={connectModal.visible} onDismiss={() => connectModal.setVisible(false)} login={handleLogin} />
@@ -75,6 +80,11 @@ const Header: React.FC = () => {
         <Logo href="https://dogira.viralata.finance">
           <LogoImage src={isDesktop ? '/images/logo-black.png' : '/images/logo.png'} alt="Vira-lata Finance" />
         </Logo>
+        <div role="button" aria-hidden="true" style={{ cursor: 'pointer', marginTop: 10 }} onClick={switchLightMode} onKeyDown={switchLightMode}>
+          <Sun color={!isDark ? 'rgb(69,7,254)' : 'rgb(0,255,252,0.2)'} />
+          <span> </span>
+          <Moon color={isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254,0.2)'} />
+        </div>
         {/* <Grid xs alignItems="center" justify="flex-end" />
         <FlexDiv>
           <StyledConnect
