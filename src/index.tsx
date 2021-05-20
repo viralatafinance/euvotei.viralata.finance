@@ -23,7 +23,7 @@ const myTheme1 = Themes.createFromLight({
   type: 'viralata',
   font: {
     sans:
-      '"Source Sans Pro", sans-serif',
+      '"DM Sans", sans-serif',
     mono: 'Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace',
   },
 })

@@ -11,7 +11,6 @@ import styled, { ThemeContext } from 'styled-components'
 
 const StyledPageHeader = styled(Page.Header)`
   padding: 40px;
-  position: fixed;
   z-index: 999;
 `
 
@@ -26,7 +25,7 @@ const Logo = styled.a`
 `
 
 const LogoImage = styled.img`
-  max-height: 220px !important;
+  max-height: 150px !important;
 `
 
 const StyledConnect = styled(Tag)`

@@ -29,7 +29,6 @@ export const StyledTitle = styled(Text)`
   line-height: 95px;
   font-weight: 900;
   text-transform: uppercase;
-  font-family: Source Sans Pro, Helvetica, sans-serif;
   color: #fff;
   letter-spacing: -2px;
 `
@@ -52,13 +51,31 @@ export const StyledTilt = styled(Tilt)`
   max-width: 400px;
 `
 
-const slides = [  
+const slides = [
   {
     title: 'Viralata + Dogira',
     subtitle: 'NFT Collection',
     description: 'soon',
-    image: './images/reau-dogira-1.jpg',
-  }
+    image: './images/NFT-PREV1.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'NFT Collection',
+    description: 'soon',
+    image: './images/NFT-PREV2.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'NFT Collection',
+    description: 'soon',
+    image: './images/NFT-PREV3.jpg',
+  },
+  {
+    title: 'Viralata + Dogira',
+    subtitle: 'NFT Collection',
+    description: 'soon',
+    image: './images/NFT-PREV4.jpg',
+  },
 ]
 
 function useTilt(active) {
@@ -167,19 +184,50 @@ const Donate = () => {
   const [state, dispatch] = React.useReducer(slidesReducer, initialState)
   const isDesktop = useMediaQuery('md', { match: 'up' })
   const cName = isDesktop ? 'slides' : 'slides slides-mobile'
+  const cWrapperName = isDesktop ? 'slides-wrapper' : 'slides-wrapper slides-wrapper-mobile'
 
   return (
-    <div style={{ zIndex: 4, flex: 1, display: 'flex' }}>
-      <div className={cName}>
+    <>
+      <div className={'slide-container'}>
         <button onClick={() => dispatch({ type: 'PREV' })}>‹</button>
-
-        {[...slides, ...slides, ...slides].map((slide, i) => {
-          let offset = slides.length + (state.slideIndex - i)
-          return <Slide slide={slide} offset={offset} key={i} />
-        })}
+        <div className={cWrapperName}>
+          <div className={cName}>
+            {[...slides, ...slides, ...slides].map((slide, i) => {
+              let offset = slides.length + (state.slideIndex - i)
+              return <Slide slide={slide} offset={offset} key={i} />
+            })}
+          </div>
+        </div>
         <button onClick={() => dispatch({ type: 'NEXT' })}>›</button>
       </div>
-    </div>
+      <div style={{ zIndex: 999, color: '#fff', textAlign: 'center', maxWidth: 1200, padding: 20, marginTop: 50 }}>
+        <h2 className="neon-words" style={{ fontSize: 22, fontWeight: 300 }}>
+          <span className="neon-words__word">Viralata + Dogira is a partnership to help NGO's in raising funds.</span>
+          <span className="neon-words__word">You can read more below.</span>
+        </h2>
+      </div>
+
+      <div style={{ zIndex: 999, color: '#fff', textAlign: 'center', width: '100%', maxWidth: 1200, padding: 40, margin: '0px 0px 100px 0px', backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: '0px 0px 5px 3px #0ff;' }}>
+        <h2>Viralata Finance Charity Fund</h2>
+
+        <p>
+          The charity fund is a wallet on the blockchain to receive donations in $REAU in the name of Viralata Finance and transfer the funds to partner animal shelter (NGOs)
+          monthly to create a relationship with it.
+        </p>
+
+        <p>You can check the balance and all transactions in this portfolio directly at BSCscan by clicking here and also on the Viralatômetro.</p>
+        <p>Viralata Finance</p>
+        <p>0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e</p>
+        <p>How transfers will be made to NGOs?</p>
+
+        <p>
+          Monthly transfer to the partner NGOs from the Charity Fund: on the last day of the month, starting on May 31 2021, 20% of the total charity fund will be exchanged from
+          $REAUs into a stable token and sent to partner NGOs, making an equal division among them; Remaining fund - Remaining 80% will remain in the fund in order to generate
+          progressive growth, as if it were a second income-generating black hole for the charity fund; Stimulating growth - the final idea is that only the proceeds of the fund
+          are used for donations, in order to stimulate its progressive growth and help more and more NGOs; Read more about it by clicking here.
+        </p>
+      </div>
+    </>
 
     // <>
     //   <AppBody>

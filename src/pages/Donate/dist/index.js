@@ -34,7 +34,7 @@ var useI18n_1 = require("../../hooks/useI18n");
 var Collectibles_1 = require("../../data/Collectibles");
 exports.StyledImage = styled_components_1["default"].img(templateObject_1 || (templateObject_1 = __makeTemplateObject([""], [""])));
 exports.StyledWrapper = styled_components_1["default"](styleds_1.Wrapper)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  padding: 30px 40px;\n  margin-left: 100px;\n  width: 60%;\n  color: #fffd;\n  border: 1px solid #4bf2cd;\n  border-radius: 10px;\n  box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px, rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px !important;\n"], ["\n  padding: 30px 40px;\n  margin-left: 100px;\n  width: 60%;\n  color: #fffd;\n  border: 1px solid #4bf2cd;\n  border-radius: 10px;\n  box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px, rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px !important;\n"])));
-exports.StyledTitle = styled_components_1["default"](react_2.Text)(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-size: 75px;\n  line-height: 95px;\n  font-weight: 900;\n  text-transform: uppercase;\n  font-family: Source Sans Pro, Helvetica, sans-serif;\n  color: #fff;\n  letter-spacing: -2px;\n"], ["\n  font-size: 75px;\n  line-height: 95px;\n  font-weight: 900;\n  text-transform: uppercase;\n  font-family: Source Sans Pro, Helvetica, sans-serif;\n  color: #fff;\n  letter-spacing: -2px;\n"])));
+exports.StyledTitle = styled_components_1["default"](react_2.Text)(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-size: 75px;\n  line-height: 95px;\n  font-weight: 900;\n  text-transform: uppercase;\n  color: #fff;\n  letter-spacing: -2px;\n"], ["\n  font-size: 75px;\n  line-height: 95px;\n  font-weight: 900;\n  text-transform: uppercase;\n  color: #fff;\n  letter-spacing: -2px;\n"])));
 exports.StyledText = styled_components_1["default"](react_2.Text)(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  margin: 0px;\n  font-weight: 300;\n  color: white !important;\n  font-size: 32px;\n  text-align: center;\n  margin-top: 10px;\n"], ["\n  margin: 0px;\n  font-weight: 300;\n  color: white !important;\n  font-size: 32px;\n  text-align: center;\n  margin-top: 10px;\n"])));
 exports.StyledTilt = styled_components_1["default"](react_tilt_1["default"])(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  width: 100%;\n  justify-content: center;\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  max-width: 400px;\n"], ["\n  width: 100%;\n  justify-content: center;\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  max-width: 400px;\n"])));
 var slides = [
@@ -42,8 +42,26 @@ var slides = [
         title: 'Viralata + Dogira',
         subtitle: 'NFT Collection',
         description: 'soon',
-        image: './images/reau-dogira-1.jpg'
-    }
+        image: './images/NFT-PREV1.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'NFT Collection',
+        description: 'soon',
+        image: './images/NFT-PREV2.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'NFT Collection',
+        description: 'soon',
+        image: './images/NFT-PREV3.jpg'
+    },
+    {
+        title: 'Viralata + Dogira',
+        subtitle: 'NFT Collection',
+        description: 'soon',
+        image: './images/NFT-PREV4.jpg'
+    },
 ];
 function useTilt(active) {
     var ref = react_1["default"].useRef(null);
@@ -119,14 +137,28 @@ var Donate = function () {
     var _b = react_1["default"].useReducer(slidesReducer, initialState), state = _b[0], dispatch = _b[1];
     var isDesktop = react_2.useMediaQuery('md', { match: 'up' });
     var cName = isDesktop ? 'slides' : 'slides slides-mobile';
-    return (react_1["default"].createElement("div", { style: { zIndex: 4, flex: 1, display: 'flex' } },
-        react_1["default"].createElement("div", { className: cName },
+    var cWrapperName = isDesktop ? 'slides-wrapper' : 'slides-wrapper slides-wrapper-mobile';
+    return (react_1["default"].createElement(react_1["default"].Fragment, null,
+        react_1["default"].createElement("div", { className: 'slide-container' },
             react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'PREV' }); } }, "\u2039"),
-            __spreadArrays(slides, slides, slides).map(function (slide, i) {
-                var offset = slides.length + (state.slideIndex - i);
-                return react_1["default"].createElement(Slide, { slide: slide, offset: offset, key: i });
-            }),
-            react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'NEXT' }); } }, "\u203A")))
+            react_1["default"].createElement("div", { className: cWrapperName },
+                react_1["default"].createElement("div", { className: cName }, __spreadArrays(slides, slides, slides).map(function (slide, i) {
+                    var offset = slides.length + (state.slideIndex - i);
+                    return react_1["default"].createElement(Slide, { slide: slide, offset: offset, key: i });
+                }))),
+            react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'NEXT' }); } }, "\u203A")),
+        react_1["default"].createElement("div", { style: { zIndex: 999, color: '#fff', textAlign: 'center', maxWidth: 1200, padding: 20, marginTop: 50 } },
+            react_1["default"].createElement("h2", { className: "neon-words", style: { fontSize: 22, fontWeight: 300 } },
+                react_1["default"].createElement("span", { className: "neon-words__word" }, "Viralata + Dogira is a partnership to help NGO's in raising funds."),
+                react_1["default"].createElement("span", { className: "neon-words__word" }, "You can read more below."))),
+        react_1["default"].createElement("div", { style: { zIndex: 999, color: '#fff', textAlign: 'center', width: '100%', maxWidth: 1200, padding: 40, margin: '0px 0px 100px 0px', backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: '0px 0px 5px 3px #0ff;' } },
+            react_1["default"].createElement("h2", null, "Viralata Finance Charity Fund"),
+            react_1["default"].createElement("p", null, "The charity fund is a wallet on the blockchain to receive donations in $REAU in the name of Viralata Finance and transfer the funds to partner animal shelter (NGOs) monthly to create a relationship with it."),
+            react_1["default"].createElement("p", null, "You can check the balance and all transactions in this portfolio directly at BSCscan by clicking here and also on the Viralat\u00F4metro."),
+            react_1["default"].createElement("p", null, "Viralata Finance"),
+            react_1["default"].createElement("p", null, "0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e"),
+            react_1["default"].createElement("p", null, "How transfers will be made to NGOs?"),
+            react_1["default"].createElement("p", null, "Monthly transfer to the partner NGOs from the Charity Fund: on the last day of the month, starting on May 31 2021, 20% of the total charity fund will be exchanged from $REAUs into a stable token and sent to partner NGOs, making an equal division among them; Remaining fund - Remaining 80% will remain in the fund in order to generate progressive growth, as if it were a second income-generating black hole for the charity fund; Stimulating growth - the final idea is that only the proceeds of the fund are used for donations, in order to stimulate its progressive growth and help more and more NGOs; Read more about it by clicking here.")))
     // <>
     //   <AppBody>
     //     <DonateConfirmModal
