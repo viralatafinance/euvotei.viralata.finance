@@ -58,7 +58,7 @@ var Header = function () {
     var switchLightMode = function () {
         toggleTheme();
     };
-    return (react_2["default"].createElement(StyledPageHeader, { style: { padding: isDesktop ? 40 : 20 } },
+    return (react_2["default"].createElement(StyledPageHeader, { style: { padding: isDesktop ? 40 : 20, marginTop: isDesktop ? 0 : 20 } },
         react_2["default"].createElement(ConnectModal_1["default"], { isOpen: connectModal.visible, onDismiss: function () { return connectModal.setVisible(false); }, login: handleLogin }),
         react_2["default"].createElement(AccountModal_1["default"], { isOpen: accountModal.visible, onDismiss: function () { return accountModal.setVisible(false); }, account: account || '', logout: deactivate }),
         react_2["default"].createElement(react_1.Grid.Container, { justify: "space-between", direction: isDesktop ? 'row' : 'column-reverse' },

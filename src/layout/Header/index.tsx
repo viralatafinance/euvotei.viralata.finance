@@ -70,7 +70,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <StyledPageHeader style={{ padding: isDesktop ? 40 : 20 }}>
+    <StyledPageHeader style={{ padding: isDesktop ? 40 : 20, marginTop: isDesktop ? 0 : 20 }}>
       <ConnectModal isOpen={connectModal.visible} onDismiss={() => connectModal.setVisible(false)} login={handleLogin} />
       <AccountModal isOpen={accountModal.visible} onDismiss={() => accountModal.setVisible(false)} account={account || ''} logout={deactivate} />
       <Grid.Container justify="space-between" direction={isDesktop ? 'row' : 'column-reverse'}>
