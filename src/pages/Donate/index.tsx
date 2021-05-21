@@ -207,6 +207,7 @@ const testimonials = [
         auxiliará nesse momento em que não podemos realizar nossos eventos de arrecadação e que nosso brechó opera on-line/presencial.
       </p>
     ),
+    featured: true,
   },
   {
     image: '4.jpg',
@@ -247,6 +248,7 @@ const testimonials = [
     total: 1299.61,
     howto: 'https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDMwOTIyMDYwMTY3MjUx?igshid=6lyshei28gfg',
     thanks: '',
+    featured: true,
   },
 
   {
@@ -299,6 +301,7 @@ const testimonials = [
     total: 1199.0,
     thanks: 'https://twitter.com/viralatafinance/status/1384290709268680712',
     howto: 'https://www.instagram.com/stories/highlights/18059308147111228/',
+    featured: true,
   },
   {
     image: '10.jpg',
@@ -339,6 +342,24 @@ const testimonials = [
     total: 5652.85,
     thanks: 'https://instagram.com/viralataviraamorcacoal',
     howto: 'https://www.instagram.com/p/COY47HInKfQ/?igshid=1a5r09frgdgpl',
+    featured: true,
+  },
+  {
+    image: '14.jpg',
+    name: 'CASA DOS ANJOS',
+    from: 'Macaé, RJ, Brazil',
+    instagram: '@casadosanjos',
+    total: 6785.3,
+    instagramLink: 'https://www.instagram.com/casadosanjos',
+    featured: true,
+  },
+  {
+    image: '14.jpg',
+    name: 'PATAS E FOCINHOS',
+    from: 'Macaé, RJ, Brazil',
+    instagram: '@patasfocinhos',
+    total: 3281.41,
+    instagramLink: 'https://www.instagram.com/patasfocinhos/',
   },
 ]
 
@@ -409,22 +430,28 @@ const Donate = () => {
             </ul>
             <br />
             <div style={{ textAlign: 'center' }}>
-              <p>Charity Fund Wallet</p>
+              <span style={{display: 'block'}}>Charity Fund Wallet</span>
               <img src={'/images/QR_CODE.png'} alt="Viralata Finance Charity Fund" />
               <br />
-              <Flex mb="32px" justifyContent="center"  style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} >
-                <Link style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} href={`https://bscscan.com/address/0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e`}>0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e</Link>
-                <CopyToClipboard toCopy={"0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e"}  />
+              <Flex mb="48px" justifyContent="center" style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }}>
+                <Link style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }} href={`https://bscscan.com/address/0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e`}>
+                  0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e
+                </Link>
+                <CopyToClipboard toCopy={'0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e'} />
               </Flex>
-              <p>Artist Wallet</p>
-              <Flex mb="32px" justifyContent="center"  style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} >
-                <Link style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} href={`https://bscscan.com/address/-`}>-</Link>
-                <CopyToClipboard toCopy={"-"}  />
+              <span>Artist Wallet</span>
+              <Flex mb="48px" justifyContent="center" style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }}>
+                <Link style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }} href={`https://bscscan.com/address/0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e`}>
+                  0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e
+                </Link>
+                <CopyToClipboard toCopy={'0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e'} />
               </Flex>
-              <p>Viralata Finance Wallet</p>
-              <Flex mb="68px" justifyContent="center"  style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} >
-                <Link style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} href={`https://bscscan.com/address/0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3`}>0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3</Link>
-                <CopyToClipboard toCopy={"0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3"}  />
+              <span>Viralata Finance Wallet</span>
+              <Flex mb="68px" justifyContent="center" style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }}>
+                <Link style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }} href={`https://bscscan.com/address/0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3`}>
+                  0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3
+                </Link>
+                <CopyToClipboard toCopy={'0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3'} />
               </Flex>
               You can also donate directly to the wallets above using BEP20 tokens.{' '}
             </div>
@@ -453,11 +480,33 @@ const Donate = () => {
         <br />
         <br />
         <h2 className="neon-words">
-          <span className="neon-words__word">5. Who are some previous NGOs that have been helped?</span>
+          <span className="neon-words__word">5. Who are the current list NGOs helped?</span>
+          <span className="neon-block">
+            <ul>
+              {testimonials
+                .filter((r) => r.featured === true)
+                .map((t, i) => {
+                  return (
+                    <li key={i}>
+                      {t.name} - <a href={t.instagramLink}>{t.instagram}</a>
+                    </li>
+                  )
+                })}
+            </ul>
+          </span>
+        </h2>
+        <br />
+        <br />
+        <h2 className="neon-words">
+          <span className="neon-words__word">6. Who are some previous NGOs that have been helped?</span>
           <span className="neon-block">
             <ul>
               {testimonials.map((t, i) => {
-                return <li key={i}>{t.name}</li>
+                return (
+                  <li key={i}>
+                    {t.name} - <a href={t.instagramLink}>{t.instagram}</a>
+                  </li>
+                )
               })}
             </ul>
           </span>
@@ -465,7 +514,7 @@ const Donate = () => {
         <br />
         <br />
         <h2 className="neon-words">
-          <span className="neon-words__word">6. Where to find more information about?</span>
+          <span className="neon-words__word">7. Where to find more information about?</span>
           <span className="neon-block">
             You can find more information about Viralata Finance Charity Fund at <a href="https://viralata.finance">viralata.finance</a> and{' '}
             <a href="https://viralatometro.com">viralatometro.com.</a> <br /> Also you can read our document about it by{' '}
@@ -474,7 +523,6 @@ const Donate = () => {
         </h2>
       </StyledContent>
     </>
-
     // <>
     //   <AppBody>
 

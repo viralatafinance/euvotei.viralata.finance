@@ -147,7 +147,8 @@ var testimonials = [
             ' ',
             react_1["default"].createElement("a", { className: "theme-color", href: "https://viralata.finance" }, "viralata.finance"),
             ' ',
-            "conseguimos arrecadar um valor que ser\u00E1 destinado \u00E0 compra de ra\u00E7\u00E3o e a vacina\u00E7\u00E3o anual de nossos animais. Esse doa\u00E7\u00E3o ter\u00E1 um impacto imenso em nosso ano, pois nos auxiliar\u00E1 nesse momento em que n\u00E3o podemos realizar nossos eventos de arrecada\u00E7\u00E3o e que nosso brech\u00F3 opera on-line/presencial."))
+            "conseguimos arrecadar um valor que ser\u00E1 destinado \u00E0 compra de ra\u00E7\u00E3o e a vacina\u00E7\u00E3o anual de nossos animais. Esse doa\u00E7\u00E3o ter\u00E1 um impacto imenso em nosso ano, pois nos auxiliar\u00E1 nesse momento em que n\u00E3o podemos realizar nossos eventos de arrecada\u00E7\u00E3o e que nosso brech\u00F3 opera on-line/presencial.")),
+        featured: true
     },
     {
         image: '4.jpg',
@@ -187,7 +188,8 @@ var testimonials = [
         date: '11/04/2021',
         total: 1299.61,
         howto: 'https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDMwOTIyMDYwMTY3MjUx?igshid=6lyshei28gfg',
-        thanks: ''
+        thanks: '',
+        featured: true
     },
     {
         image: '6.jpg',
@@ -237,7 +239,8 @@ var testimonials = [
         date: '18/04/2021',
         total: 1199.0,
         thanks: 'https://twitter.com/viralatafinance/status/1384290709268680712',
-        howto: 'https://www.instagram.com/stories/highlights/18059308147111228/'
+        howto: 'https://www.instagram.com/stories/highlights/18059308147111228/',
+        featured: true
     },
     {
         image: '10.jpg',
@@ -277,7 +280,25 @@ var testimonials = [
         date: '02/05/2021',
         total: 5652.85,
         thanks: 'https://instagram.com/viralataviraamorcacoal',
-        howto: 'https://www.instagram.com/p/COY47HInKfQ/?igshid=1a5r09frgdgpl'
+        howto: 'https://www.instagram.com/p/COY47HInKfQ/?igshid=1a5r09frgdgpl',
+        featured: true
+    },
+    {
+        image: '14.jpg',
+        name: 'CASA DOS ANJOS',
+        from: 'Macaé, RJ, Brazil',
+        instagram: '@casadosanjos',
+        total: 6785.3,
+        instagramLink: 'https://www.instagram.com/casadosanjos',
+        featured: true
+    },
+    {
+        image: '14.jpg',
+        name: 'PATAS E FOCINHOS',
+        from: 'Macaé, RJ, Brazil',
+        instagram: '@patasfocinhos',
+        total: 3281.41,
+        instagramLink: 'https://www.instagram.com/patasfocinhos/'
     },
 ];
 var Donate = function () {
@@ -338,20 +359,20 @@ var Donate = function () {
                         react_1["default"].createElement("li", null, "6% to Viralata Finance for further development")),
                     react_1["default"].createElement("br", null),
                     react_1["default"].createElement("div", { style: { textAlign: 'center' } },
-                        react_1["default"].createElement("p", null, "Charity Fund Wallet"),
+                        react_1["default"].createElement("span", { style: { display: 'block' } }, "Charity Fund Wallet"),
                         react_1["default"].createElement("img", { src: '/images/QR_CODE.png', alt: "Viralata Finance Charity Fund" }),
                         react_1["default"].createElement("br", null),
-                        react_1["default"].createElement(uikit_1.Flex, { mb: "32px", justifyContent: "center", style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' } },
+                        react_1["default"].createElement(uikit_1.Flex, { mb: "48px", justifyContent: "center", style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' } },
                             react_1["default"].createElement(react_2.Link, { style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }, href: "https://bscscan.com/address/0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e" }, "0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e"),
-                            react_1["default"].createElement(CopyToClipboard_1["default"], { toCopy: "0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e" })),
-                        react_1["default"].createElement("p", null, "Artist Wallet"),
-                        react_1["default"].createElement(uikit_1.Flex, { mb: "32px", justifyContent: "center", style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' } },
-                            react_1["default"].createElement(react_2.Link, { style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }, href: "https://bscscan.com/address/-" }, "-"),
-                            react_1["default"].createElement(CopyToClipboard_1["default"], { toCopy: "-" })),
-                        react_1["default"].createElement("p", null, "Viralata Finance Wallet"),
+                            react_1["default"].createElement(CopyToClipboard_1["default"], { toCopy: '0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e' })),
+                        react_1["default"].createElement("span", null, "Artist Wallet"),
+                        react_1["default"].createElement(uikit_1.Flex, { mb: "48px", justifyContent: "center", style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' } },
+                            react_1["default"].createElement(react_2.Link, { style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }, href: "https://bscscan.com/address/0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e" }, "0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e"),
+                            react_1["default"].createElement(CopyToClipboard_1["default"], { toCopy: '0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e' })),
+                        react_1["default"].createElement("span", null, "Viralata Finance Wallet"),
                         react_1["default"].createElement(uikit_1.Flex, { mb: "68px", justifyContent: "center", style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' } },
                             react_1["default"].createElement(react_2.Link, { style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }, href: "https://bscscan.com/address/0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3" }, "0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3"),
-                            react_1["default"].createElement(CopyToClipboard_1["default"], { toCopy: "0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3" })),
+                            react_1["default"].createElement(CopyToClipboard_1["default"], { toCopy: '0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3' })),
                         "You can also donate directly to the wallets above using BEP20 tokens.",
                         ' '))),
             react_1["default"].createElement("br", null),
@@ -373,15 +394,31 @@ var Donate = function () {
             react_1["default"].createElement("br", null),
             react_1["default"].createElement("br", null),
             react_1["default"].createElement("h2", { className: "neon-words" },
-                react_1["default"].createElement("span", { className: "neon-words__word" }, "5. Who are some previous NGOs that have been helped?"),
+                react_1["default"].createElement("span", { className: "neon-words__word" }, "5. Who are the current list NGOs helped?"),
                 react_1["default"].createElement("span", { className: "neon-block" },
-                    react_1["default"].createElement("ul", null, testimonials.map(function (t, i) {
-                        return react_1["default"].createElement("li", { key: i }, t.name);
+                    react_1["default"].createElement("ul", null, testimonials
+                        .filter(function (r) { return r.featured === true; })
+                        .map(function (t, i) {
+                        return (react_1["default"].createElement("li", { key: i },
+                            t.name,
+                            " - ",
+                            react_1["default"].createElement("a", { href: t.instagramLink }, t.instagram)));
                     })))),
             react_1["default"].createElement("br", null),
             react_1["default"].createElement("br", null),
             react_1["default"].createElement("h2", { className: "neon-words" },
-                react_1["default"].createElement("span", { className: "neon-words__word" }, "6. Where to find more information about?"),
+                react_1["default"].createElement("span", { className: "neon-words__word" }, "6. Who are some previous NGOs that have been helped?"),
+                react_1["default"].createElement("span", { className: "neon-block" },
+                    react_1["default"].createElement("ul", null, testimonials.map(function (t, i) {
+                        return (react_1["default"].createElement("li", { key: i },
+                            t.name,
+                            " - ",
+                            react_1["default"].createElement("a", { href: t.instagramLink }, t.instagram)));
+                    })))),
+            react_1["default"].createElement("br", null),
+            react_1["default"].createElement("br", null),
+            react_1["default"].createElement("h2", { className: "neon-words" },
+                react_1["default"].createElement("span", { className: "neon-words__word" }, "7. Where to find more information about?"),
                 react_1["default"].createElement("span", { className: "neon-block" },
                     "You can find more information about Viralata Finance Charity Fund at ",
                     react_1["default"].createElement("a", { href: "https://viralata.finance" }, "viralata.finance"),

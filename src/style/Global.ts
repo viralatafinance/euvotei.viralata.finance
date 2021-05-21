@@ -310,6 +310,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     word-break: break-all !important;
+    color: rgb(0,255,252);
   }
   
 
@@ -318,14 +319,15 @@ const GlobalStyle = createGlobalStyle`
 
     li {      
       color: #c6e2ff;  
+      
     }
     
     li:before {
-    content: '–';
-    display: inline-block;
-    color: #c6e2ff;  
-    margin-left: -1.5rem;
-  }
+      content: '–';
+      display: inline-block;
+      color: #c6e2ff;  
+      margin-left: -1.5rem;
+    }
 }
 /*-- Animation Keyframes --*/
 
