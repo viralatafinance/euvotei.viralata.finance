@@ -366,7 +366,7 @@ const Donate = () => {
         </div>
         <button onClick={() => dispatch({ type: 'NEXT' })}>›</button>
       </div>
-      <StyledContent className={`${!isDark ? 'neon-content-light' : ''}`}>
+      <StyledContent className={`${!isDark ? 'neon-content-light' : ''} ${!isDesktop ? 'neon-content-mobile' : ''}`}>
         <h2 className="neon-words">
           <span className="neon-words__word">Viralata + Dogira is a partnership to help NGO's in raising funds</span>
           <span className="neon-words__word">You can read more below</span>
@@ -376,7 +376,7 @@ const Donate = () => {
         <h2 className="neon-words">
           <span className="neon-words__word">1. Why?</span>
           <span className="neon-block">
-            Vira-Lata Finance was inspired by the caramel coloured stray dog and the millions of other stray dogs that wander the streets of Brazil.
+            Viralata Finance was inspired by the caramel coloured stray dog and the millions of other stray dogs that wander the streets of Brazil.
             <br />
             <br />
             As a community, we believe that we have the power to make a difference through community efforts and charitable donations.
@@ -398,7 +398,7 @@ const Donate = () => {
         <h2 className="neon-words">
           <span className="neon-words__word">2. How to contribute?</span>
           <span className="neon-block">
-            When you buy a NFT you will be supporting Viralata Finance Charity Fund for NGO's. The NFT the contract will distribute the amount in:
+            When you buy a NFT you will be supporting Viralata Finance Charity Fund for NGO's. The NFT contract will distribute the amount in:
             <ul>
               <li>84% to Charity Fund Wallet</li>
               <li>10% to the artist</li>

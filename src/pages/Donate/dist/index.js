@@ -297,7 +297,7 @@ var Donate = function () {
                     return react_1["default"].createElement(Slide, { slide: slide, offset: offset, key: i });
                 }))),
             react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'NEXT' }); } }, "\u203A")),
-        react_1["default"].createElement(StyledContent, { className: "" + (!isDark ? 'neon-content-light' : '') },
+        react_1["default"].createElement(StyledContent, { className: (!isDark ? 'neon-content-light' : '') + " " + (!isDesktop ? 'neon-content-mobile' : '') },
             react_1["default"].createElement("h2", { className: "neon-words" },
                 react_1["default"].createElement("span", { className: "neon-words__word" }, "Viralata + Dogira is a partnership to help NGO's in raising funds"),
                 react_1["default"].createElement("span", { className: "neon-words__word" }, "You can read more below")),
@@ -306,7 +306,7 @@ var Donate = function () {
             react_1["default"].createElement("h2", { className: "neon-words" },
                 react_1["default"].createElement("span", { className: "neon-words__word" }, "1. Why?"),
                 react_1["default"].createElement("span", { className: "neon-block" },
-                    "Vira-Lata Finance was inspired by the caramel coloured stray dog and the millions of other stray dogs that wander the streets of Brazil.",
+                    "Viralata Finance was inspired by the caramel coloured stray dog and the millions of other stray dogs that wander the streets of Brazil.",
                     react_1["default"].createElement("br", null),
                     react_1["default"].createElement("br", null),
                     "As a community, we believe that we have the power to make a difference through community efforts and charitable donations.",
@@ -328,7 +328,7 @@ var Donate = function () {
             react_1["default"].createElement("h2", { className: "neon-words" },
                 react_1["default"].createElement("span", { className: "neon-words__word" }, "2. How to contribute?"),
                 react_1["default"].createElement("span", { className: "neon-block" },
-                    "When you buy a NFT you will be supporting Viralata Finance Charity Fund for NGO's. The NFT the contract will distribute the amount in:",
+                    "When you buy a NFT you will be supporting Viralata Finance Charity Fund for NGO's. The NFT contract will distribute the amount in:",
                     react_1["default"].createElement("ul", null,
                         react_1["default"].createElement("li", null, "84% to Charity Fund Wallet"),
                         react_1["default"].createElement("li", null, "10% to the artist"),
@@ -394,7 +394,7 @@ var Donate = function () {
                     " ",
                     react_1["default"].createElement("br", null),
                     " Also you can read our document about it by ",
-                    react_1["default"].createElement("a", { href: "https://viralatometro.com" }, "clicking here.")))))
+                    react_1["default"].createElement("a", { href: "https://drive.google.com/file/d/1bZ8wrgbQb1iS52DiSyX3igPkjesuN2LI/view?usp=sharing" }, "clicking here.")))))
     // <>
     //   <AppBody>
     //     <DonateConfirmModal

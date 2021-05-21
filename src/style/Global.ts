@@ -208,7 +208,10 @@ const GlobalStyle = createGlobalStyle`
   }
 }
 
+.neon-content-mobile {
+  width: 100%;
 
+}
 .neon-content-light {
   
   .neon-words {
@@ -224,7 +227,8 @@ const GlobalStyle = createGlobalStyle`
     color: #111;
 
     a {
-      color: rgb(69,7,254)
+      color: rgb(69,7,254);
+      word-break: break-all;
     }
     
     ul { 
