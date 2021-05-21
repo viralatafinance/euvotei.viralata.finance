@@ -47,7 +47,6 @@ const GlobalStyle = createGlobalStyle`
     min-height: 55vh;
   }
 
-  
   .slideSubtitle {    
     font-size: 1.2rem !important;
   }
@@ -58,15 +57,6 @@ const GlobalStyle = createGlobalStyle`
 
 }
  
-.slides-mobile > button:first-child {
-  left: 0px !important;
-} 
-
-.slides-mobile > button:last-child {
-  right: 0px !important;;
-}
-
-
 
 .slides {
 
@@ -97,7 +87,7 @@ const GlobalStyle = createGlobalStyle`
     transition: opacity 0.3s;
     opacity: 0.7;
     z-index: 5;
-    width: 40px;
+    width: 35px;
 
     &:hover {
       opacity: 1;
@@ -228,7 +218,7 @@ const GlobalStyle = createGlobalStyle`
 
     a {
       color: rgb(69,7,254);
-      word-break: break-all;
+      word-break: break-all !important;
     }
     
     ul { 
@@ -288,6 +278,11 @@ const GlobalStyle = createGlobalStyle`
   width: 100%;
   letter-spacing: 1px;
   // box-shadow: 0px 0px 5px 3px #0ff;
+
+  a {
+    word-break: break-all !important;
+  }
+  
 
   ul {
     color: #c6e2ff;
