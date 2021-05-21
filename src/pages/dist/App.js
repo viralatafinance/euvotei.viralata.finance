@@ -45,7 +45,6 @@ var react_router_dom_1 = require("react-router-dom");
 var styled_components_1 = require("styled-components");
 var crowdin_api_client_1 = require("@crowdin/crowdin-api-client");
 var Layout_1 = require("layout/Layout");
-var Popups_1 = require("../components/Popups");
 var Web3ReactManager_1 = require("../components/Web3ReactManager");
 var Donate_1 = require("./Donate");
 var redirects_1 = require("./Donate/redirects");
@@ -115,7 +114,6 @@ function App() {
                     react_1["default"].createElement(TranslationsContext_1.TranslationsContext.Provider, { value: { translations: translations, setTranslations: setTranslations } },
                         react_1["default"].createElement(Layout_1["default"], null,
                             react_1["default"].createElement(ContentWrapper, null,
-                                react_1["default"].createElement(Popups_1["default"], null),
                                 react_1["default"].createElement(Web3ReactManager_1["default"], null,
                                     react_1["default"].createElement(react_router_dom_1.Switch, null,
                                         react_1["default"].createElement(react_router_dom_1.Route, { exact: true, strict: true, path: "/", component: Donate_1["default"] }),

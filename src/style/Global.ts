@@ -42,17 +42,25 @@ const GlobalStyle = createGlobalStyle`
   min-height: 55vh;
     
   .slideContent {
+    padding: 5px 10px;
     width:  100% !important;
     height: auto !important;
     min-height: 55vh;
   }
 
   .slideSubtitle {    
-    font-size: 1.2rem !important;
+    font-size: 1rem !important;
+    font-weight: 900;
   }
 
   .slideTitle {
-    font-size: 1.7rem !important;
+    font-size: 1.2rem !important;
+    font-weight: 900;
+  }
+
+  > button {    
+    font-size: 20px !important;
+    width: 20px  !important;
   }
 
 }
@@ -71,13 +79,19 @@ const GlobalStyle = createGlobalStyle`
 
 }
 
+.slide-container-mobile {
+  > button {    
+    font-size: 20px !important;
+    width: 20px  !important;
+  }
+
+}
+
 .slide-container {
   z-index: 4;
-  flex: 1;
-  display: grid;
+  display: flex;
   width: 100%;
   padding: 20px 0px;
-  grid-template-columns: 35px auto 35px;
 
   > button {
     appearance: none;
@@ -88,7 +102,7 @@ const GlobalStyle = createGlobalStyle`
     transition: opacity 0.3s;
     opacity: 0.7;
     z-index: 5;
-    width: 35px;
+    width: 5rem;
 
     &:hover {
       opacity: 1;
@@ -201,6 +215,20 @@ const GlobalStyle = createGlobalStyle`
 
 .neon-content-mobile {
   width: 100%;
+
+  .neon-words {
+    &__word {
+      font-size: 1.2rem;  
+      letter-spacing: 1px;
+    }
+  }
+
+  
+  .neon-block {
+    font-size: 1rem;
+    padding: 20px;
+    letter-spacing: 0px;
+  }
 
 }
 .neon-content-light {

@@ -110,7 +110,6 @@ export default function App() {
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
               <Layout>
                 <ContentWrapper>
-                  <Popups />
                   <Web3ReactManager>
                     <Switch>
                       <Route exact strict path="/" component={Donate} />

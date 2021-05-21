@@ -21,6 +21,9 @@ window.addEventListener('error', () => {
 
 const myTheme1 = Themes.createFromLight({
   type: 'viralata',
+  pallete: {
+    success: 'rgb(0,255,252)'
+  },
   font: {
     sans:
       '"DM Sans", sans-serif',

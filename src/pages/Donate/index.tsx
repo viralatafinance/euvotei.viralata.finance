@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useState } from 'react'
-import { Text, useMediaQuery } from '@geist-ui/react'
+import { Text, useMediaQuery, Link } from '@geist-ui/react'
+import { Flex } from '@pancakeswap-libs/uikit'
 import Tilt from 'react-tilt'
 import styled from 'styled-components'
 import { Wrapper } from '../../components/swap/styleds'
@@ -12,6 +13,7 @@ import DonateCard from './components/DonateCard'
 import { useCollectibleEditions } from '../../data/Collectibles'
 import DonateConfirmModal from './components/DonateConfirmModal'
 import useTheme from '../../hooks/useTheme'
+import CopyToClipboard from '../../components/WalletModal/CopyToClipboard'
 
 export const StyledImage = styled.img``
 
@@ -348,13 +350,14 @@ const Donate = () => {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
   const [state, dispatch] = React.useReducer(slidesReducer, initialState)
   const isDesktop = useMediaQuery('md', { match: 'up' })
+  const cContainer = isDesktop ? 'slide-container' : 'slide-container slide-container-mobile'
   const cName = isDesktop ? 'slides' : 'slides slides-mobile'
   const cWrapperName = isDesktop ? 'slides-wrapper' : 'slides-wrapper slides-wrapper-mobile'
   const { isDark, toggleTheme, theme } = useTheme()
 
   return (
     <>
-      <div className={'slide-container'}>
+      <div className={cContainer}>
         <button onClick={() => dispatch({ type: 'PREV' })}>‹</button>
         <div className={cWrapperName}>
           <div className={cName}>
@@ -405,14 +408,26 @@ const Donate = () => {
               <li>6% to Viralata Finance for further development</li>
             </ul>
             <br />
-            Charity Fund Wallet <br /> <a href="https://bscscan.com/address/0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e">0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e</a> <br />
-            <br />
-            Artist Wallet <br /> <a href="https://bscscan.com/address/">-</a> <br />
-            <br />
-            Viralata Finance Wallet <br /> <a href="https://bscscan.com/address/0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3">0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3</a> <br />
-            <br />
-            <br />
-            You can also donate directly to the wallets above using BEP20 tokens.
+            <div style={{ textAlign: 'center' }}>
+              <p>Charity Fund Wallet</p>
+              <img src={'/images/QR_CODE.png'} alt="Viralata Finance Charity Fund" />
+              <br />
+              <Flex mb="32px" justifyContent="center"  style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} >
+                <Link style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} href={`https://bscscan.com/address/0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e`}>0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e</Link>
+                <CopyToClipboard toCopy={"0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e"}  />
+              </Flex>
+              <p>Artist Wallet</p>
+              <Flex mb="32px" justifyContent="center"  style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} >
+                <Link style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} href={`https://bscscan.com/address/-`}>-</Link>
+                <CopyToClipboard toCopy={"-"}  />
+              </Flex>
+              <p>Viralata Finance Wallet</p>
+              <Flex mb="68px" justifyContent="center"  style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} >
+                <Link style={{fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}} href={`https://bscscan.com/address/0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3`}>0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3</Link>
+                <CopyToClipboard toCopy={"0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3"}  />
+              </Flex>
+              You can also donate directly to the wallets above using BEP20 tokens.{' '}
+            </div>
           </span>
         </h2>
         <br />
@@ -453,7 +468,8 @@ const Donate = () => {
           <span className="neon-words__word">6. Where to find more information about?</span>
           <span className="neon-block">
             You can find more information about Viralata Finance Charity Fund at <a href="https://viralata.finance">viralata.finance</a> and{' '}
-            <a href="https://viralatometro.com">viralatometro.com.</a> <br /> Also you can read our document about it by <a href="https://drive.google.com/file/d/1bZ8wrgbQb1iS52DiSyX3igPkjesuN2LI/view?usp=sharing">clicking here.</a>
+            <a href="https://viralatometro.com">viralatometro.com.</a> <br /> Also you can read our document about it by{' '}
+            <a href="https://drive.google.com/file/d/1bZ8wrgbQb1iS52DiSyX3igPkjesuN2LI/view?usp=sharing">clicking here.</a>
           </span>
         </h2>
       </StyledContent>

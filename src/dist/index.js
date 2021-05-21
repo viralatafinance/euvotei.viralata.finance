@@ -20,6 +20,9 @@ window.addEventListener('error', function () {
 });
 var myTheme1 = react_2.Themes.createFromLight({
     type: 'viralata',
+    pallete: {
+        success: 'rgb(0,255,252)'
+    },
     font: {
         sans: '"DM Sans", sans-serif',
         mono: 'Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace'

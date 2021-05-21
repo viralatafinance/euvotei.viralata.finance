@@ -35,14 +35,14 @@ var core_1 = require("@web3-react/core");
 var connectors_1 = require("connectors");
 var react_2 = require("react");
 var styled_components_1 = require("styled-components");
-var StyledPageHeader = styled_components_1["default"](react_1.Page.Header)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  padding: 40px;\n  z-index: 999;\n"], ["\n  padding: 40px;\n  z-index: 999;\n"])));
+var StyledPageHeader = styled_components_1["default"](react_1.Page.Header)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  z-index: 999;\n"], ["\n  z-index: 999;\n"])));
 var FlexDiv = styled_components_1["default"].div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  align-items: center;\n"], ["\n  display: flex;\n  align-items: center;\n"])));
 var Logo = styled_components_1["default"].a(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  display: flex;\n  color: #000;\n"], ["\n  display: flex;\n  color: #000;\n"])));
 var LogoImage = styled_components_1["default"].img(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  max-height: 100px !important;\n"], ["\n  max-height: 100px !important;\n"])));
 var StyledConnect = styled_components_1["default"](function (_a) {
     var isDark = _a.isDark, rest = __rest(_a, ["isDark"]);
     return react_2["default"].createElement(react_1.Tag, __assign({}, rest));
-})(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  border: 2px solid transparent !important;\n  background: transparent !important;\n  color: ", "  !important;\n  font-size: 16px !important;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  border: 2px solid ", ";\n  padding: 10px 25px !important;\n  height: auto !important;\n  border-radius: 6px;\n  display: inline-block;\n  font-weight: 700;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n  line-height: inherit !important;\n\n  :hover {\n    transform: scale(1.05);\n  }\n"], ["\n  border: 2px solid transparent !important;\n  background: transparent !important;\n  color: ", "  !important;\n  font-size: 16px !important;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  border: 2px solid ", ";\n  padding: 10px 25px !important;\n  height: auto !important;\n  border-radius: 6px;\n  display: inline-block;\n  font-weight: 700;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n  line-height: inherit !important;\n\n  :hover {\n    transform: scale(1.05);\n  }\n"])), function (props) { return props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'; }, function (props) { return props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'; });
+})(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  border: 2px solid transparent !important;\n  background: transparent !important;\n  color: ", " !important;\n  font-size: 16px !important;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  border: 2px solid ", ";\n  height: auto !important;\n  border-radius: 6px;\n  display: inline-block;\n  font-weight: 700;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n  line-height: inherit !important;\n\n  :hover {\n    transform: scale(1.05);\n  }\n"], ["\n  border: 2px solid transparent !important;\n  background: transparent !important;\n  color: ", " !important;\n  font-size: 16px !important;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  border: 2px solid ", ";\n  height: auto !important;\n  border-radius: 6px;\n  display: inline-block;\n  font-weight: 700;\n  -webkit-transition: 0.3s;\n  transition: 0.3s;\n  cursor: pointer;\n  line-height: inherit !important;\n\n  :hover {\n    transform: scale(1.05);\n  }\n"])), function (props) { return (props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'); }, function (props) { return (props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'); });
 var Header = function () {
     var connectModal = react_1.useModal(false);
     var accountModal = react_1.useModal(false);
@@ -58,26 +58,26 @@ var Header = function () {
     var switchLightMode = function () {
         toggleTheme();
     };
-    return (react_2["default"].createElement(StyledPageHeader, null,
+    return (react_2["default"].createElement(StyledPageHeader, { style: { padding: isDesktop ? 40 : 20 } },
         react_2["default"].createElement(ConnectModal_1["default"], { isOpen: connectModal.visible, onDismiss: function () { return connectModal.setVisible(false); }, login: handleLogin }),
         react_2["default"].createElement(AccountModal_1["default"], { isOpen: accountModal.visible, onDismiss: function () { return accountModal.setVisible(false); }, account: account || '', logout: deactivate }),
-        react_2["default"].createElement(react_1.Grid.Container, { justify: "space-between" },
+        react_2["default"].createElement(react_1.Grid.Container, { justify: "space-between", direction: isDesktop ? 'row' : 'column-reverse' },
             react_2["default"].createElement(Logo, { href: "https://dogira.viralata.finance" },
-                react_2["default"].createElement(LogoImage, { src: isDesktop ? '/images/logo-black.png' : '/images/logo.png', alt: "Vira-lata Finance" })),
-            react_2["default"].createElement(react_1.Grid, { xs: true, alignItems: "center", justify: "flex-end" }),
-            react_2["default"].createElement("div", { role: "button", "aria-hidden": "true", style: { cursor: 'pointer', marginTop: 35, marginRight: 20 }, onClick: switchLightMode, onKeyDown: switchLightMode },
-                react_2["default"].createElement(react_icons_1.Sun, { color: !isDark ? 'rgb(69,7,254)' : 'rgb(0,255,252,0.2)' }),
-                react_2["default"].createElement("span", { style: { marginRight: 5 } }, " "),
-                react_2["default"].createElement(react_icons_1.Moon, { color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254,0.2)' })),
-            react_2["default"].createElement(FlexDiv, null,
-                react_2["default"].createElement(StyledConnect, { isDark: isDark, onClick: function () {
-                        if (account) {
-                            accountModal.setVisible(true);
-                        }
-                        else {
-                            connectModal.setVisible(true);
-                        }
-                    } }, account ? account.substr(0, 4) + "..." + account.substr(-4) : "Connect Wallet")))));
+                react_2["default"].createElement(LogoImage, { style: { width: isDesktop ? 'auto' : '100%', height: isDesktop ? 'auto' : 'auto' }, src: isDesktop ? '/images/logo-black.png' : '/images/logo.png', alt: "Vira-lata Finance" })),
+            react_2["default"].createElement(react_1.Grid, { xs: true, alignItems: "center", justify: isDesktop ? 'flex-end' : 'space-between', style: { marginBottom: isDesktop ? 0 : 20 } },
+                react_2["default"].createElement("div", { role: "button", "aria-hidden": "true", style: { cursor: 'pointer', marginRight: 20 }, onClick: switchLightMode, onKeyDown: switchLightMode },
+                    react_2["default"].createElement(react_icons_1.Sun, { color: !isDark ? 'rgb(69,7,254)' : 'rgb(0,255,252,0.2)' }),
+                    react_2["default"].createElement("span", { style: { marginRight: 5 } }, " "),
+                    react_2["default"].createElement(react_icons_1.Moon, { color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254,0.2)' })),
+                react_2["default"].createElement(FlexDiv, null,
+                    react_2["default"].createElement(StyledConnect, { isDark: isDark, onClick: function () {
+                            if (account) {
+                                accountModal.setVisible(true);
+                            }
+                            else {
+                                connectModal.setVisible(true);
+                            }
+                        } }, account ? account.substr(0, 4) + "..." + account.substr(-4) : "Connect Wallet"))))));
 };
 exports["default"] = Header;
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;

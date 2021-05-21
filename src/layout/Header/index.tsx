@@ -10,7 +10,6 @@ import React, { useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 
 const StyledPageHeader = styled(Page.Header)`
-  padding: 40px;
   z-index: 999;
 `
 
@@ -31,12 +30,11 @@ const LogoImage = styled.img`
 const StyledConnect = styled(({ isDark, ...rest }) => <Tag {...rest} />)`
   border: 2px solid transparent !important;
   background: transparent !important;
-  color: ${props => props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}  !important;
+  color: ${(props) => (props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)')} !important;
   font-size: 16px !important;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: 2px solid ${props => props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'};
-  padding: 10px 25px !important;
+  border: 2px solid ${(props) => (props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)')};
   height: auto !important;
   border-radius: 6px;
   display: inline-block;
@@ -72,33 +70,38 @@ const Header: React.FC = () => {
   }
 
   return (
-    <StyledPageHeader>
+    <StyledPageHeader style={{ padding: isDesktop ? 40 : 20 }}>
       <ConnectModal isOpen={connectModal.visible} onDismiss={() => connectModal.setVisible(false)} login={handleLogin} />
       <AccountModal isOpen={accountModal.visible} onDismiss={() => accountModal.setVisible(false)} account={account || ''} logout={deactivate} />
-      <Grid.Container justify="space-between">
+      <Grid.Container justify="space-between" direction={isDesktop ? 'row' : 'column-reverse'}>
         <Logo href="https://dogira.viralata.finance">
-          <LogoImage src={isDesktop ? '/images/logo-black.png' : '/images/logo.png'} alt="Vira-lata Finance" />
+          <LogoImage
+            style={{ width: isDesktop ? 'auto' : '100%', height: isDesktop ? 'auto' : 'auto' }}
+            src={isDesktop ? '/images/logo-black.png' : '/images/logo.png'}
+            alt="Vira-lata Finance"
+          />
         </Logo>
-        <Grid xs alignItems="center" justify="flex-end" />
-        <div role="button" aria-hidden="true" style={{ cursor: 'pointer', marginTop: 35, marginRight: 20 }} onClick={switchLightMode} onKeyDown={switchLightMode}>
-          <Sun color={!isDark ? 'rgb(69,7,254)' : 'rgb(0,255,252,0.2)'} />
-          <span style={{marginRight: 5}}> </span>
-          <Moon color={isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254,0.2)'} />
-        </div>
-        <FlexDiv>
-          <StyledConnect
-            isDark={isDark}
-            onClick={() => {
-              if (account) {
-                accountModal.setVisible(true)
-              } else {
-                connectModal.setVisible(true)
-              }
-            }}
-          >
-            {account ? `${account.substr(0, 4)}...${account.substr(-4)}` : `Connect Wallet`}
-          </StyledConnect>
-        </FlexDiv>
+        <Grid xs alignItems="center" justify={isDesktop ? 'flex-end' : 'space-between'} style={{ marginBottom: isDesktop ? 0 : 20 }}>
+          <div role="button" aria-hidden="true" style={{ cursor: 'pointer', marginRight: 20 }} onClick={switchLightMode} onKeyDown={switchLightMode}>
+            <Sun color={!isDark ? 'rgb(69,7,254)' : 'rgb(0,255,252,0.2)'} />
+            <span style={{ marginRight: 5 }}> </span>
+            <Moon color={isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254,0.2)'} />
+          </div>
+          <FlexDiv>
+            <StyledConnect
+              isDark={isDark}
+              onClick={() => {
+                if (account) {
+                  accountModal.setVisible(true)
+                } else {
+                  connectModal.setVisible(true)
+                }
+              }}
+            >
+              {account ? `${account.substr(0, 4)}...${account.substr(-4)}` : `Connect Wallet`}
+            </StyledConnect>
+          </FlexDiv>
+        </Grid>
       </Grid.Container>
     </StyledPageHeader>
   )

@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
         </Grid.Container>
       </StyledContentTop>
       <StyledContentBottom>
-        <Grid.Container gap={2} justify={isDesktop ? 'flex-start' : 'center'}>
+        <Grid.Container gap={1} justify={isDesktop ? 'flex-start' : 'center'} style={{ textAlign: isDesktop ? 'left' : 'center' }}>
           <Grid xs={!isDesktop && 24}>© Viralata Finance. All rights reserved.</Grid>
         </Grid.Container>
       </StyledContentBottom>

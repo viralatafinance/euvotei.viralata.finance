@@ -46,7 +46,7 @@ var Footer = function () {
                     react_2["default"].createElement(StyledSocialMediaLinks, null,
                         react_2["default"].createElement("img", { src: isDesktop ? '/images/logo-black.png' : '/images/logo.png', alt: "Vira-lata Finance" }))))),
         react_2["default"].createElement(StyledContentBottom, null,
-            react_2["default"].createElement(react_1.Grid.Container, { gap: 2, justify: isDesktop ? 'flex-start' : 'center' },
+            react_2["default"].createElement(react_1.Grid.Container, { gap: 1, justify: isDesktop ? 'flex-start' : 'center', style: { textAlign: isDesktop ? 'left' : 'center' } },
                 react_2["default"].createElement(react_1.Grid, { xs: !isDesktop && 24 }, "\u00A9 Viralata Finance. All rights reserved.")))));
 };
 exports["default"] = Footer;

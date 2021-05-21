@@ -26,6 +26,7 @@ exports.StyledTilt = exports.StyledText = exports.StyledTitle = exports.StyledWr
 /* eslint-disable */
 var react_1 = require("react");
 var react_2 = require("@geist-ui/react");
+var uikit_1 = require("@pancakeswap-libs/uikit");
 var react_tilt_1 = require("react-tilt");
 var styled_components_1 = require("styled-components");
 var styleds_1 = require("../../components/swap/styleds");
@@ -33,6 +34,7 @@ var hooks_1 = require("../../hooks");
 var useI18n_1 = require("../../hooks/useI18n");
 var Collectibles_1 = require("../../data/Collectibles");
 var useTheme_1 = require("../../hooks/useTheme");
+var CopyToClipboard_1 = require("../../components/WalletModal/CopyToClipboard");
 exports.StyledImage = styled_components_1["default"].img(templateObject_1 || (templateObject_1 = __makeTemplateObject([""], [""])));
 exports.StyledWrapper = styled_components_1["default"](styleds_1.Wrapper)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  padding: 30px 40px;\n  margin-left: 100px;\n  width: 60%;\n  color: #fffd;\n  border: 1px solid #4bf2cd;\n  border-radius: 10px;\n  box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px, rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px !important;\n"], ["\n  padding: 30px 40px;\n  margin-left: 100px;\n  width: 60%;\n  color: #fffd;\n  border: 1px solid #4bf2cd;\n  border-radius: 10px;\n  box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px, rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px !important;\n"])));
 exports.StyledTitle = styled_components_1["default"](react_2.Text)(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-size: 75px;\n  line-height: 95px;\n  font-weight: 900;\n  text-transform: uppercase;\n  color: #fff;\n  letter-spacing: -2px;\n"], ["\n  font-size: 75px;\n  line-height: 95px;\n  font-weight: 900;\n  text-transform: uppercase;\n  color: #fff;\n  letter-spacing: -2px;\n"])));
@@ -285,11 +287,12 @@ var Donate = function () {
     var _a = react_1.useState(false), confirmModalVisible = _a[0], setConfirmModalVisible = _a[1];
     var _b = react_1["default"].useReducer(slidesReducer, initialState), state = _b[0], dispatch = _b[1];
     var isDesktop = react_2.useMediaQuery('md', { match: 'up' });
+    var cContainer = isDesktop ? 'slide-container' : 'slide-container slide-container-mobile';
     var cName = isDesktop ? 'slides' : 'slides slides-mobile';
     var cWrapperName = isDesktop ? 'slides-wrapper' : 'slides-wrapper slides-wrapper-mobile';
     var _c = useTheme_1["default"](), isDark = _c.isDark, toggleTheme = _c.toggleTheme, theme = _c.theme;
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
-        react_1["default"].createElement("div", { className: 'slide-container' },
+        react_1["default"].createElement("div", { className: cContainer },
             react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'PREV' }); } }, "\u2039"),
             react_1["default"].createElement("div", { className: cWrapperName },
                 react_1["default"].createElement("div", { className: cName }, __spreadArrays(slides, slides, slides).map(function (slide, i) {
@@ -334,29 +337,23 @@ var Donate = function () {
                         react_1["default"].createElement("li", null, "10% to the artist"),
                         react_1["default"].createElement("li", null, "6% to Viralata Finance for further development")),
                     react_1["default"].createElement("br", null),
-                    "Charity Fund Wallet ",
-                    react_1["default"].createElement("br", null),
-                    " ",
-                    react_1["default"].createElement("a", { href: "https://bscscan.com/address/0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e" }, "0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e"),
-                    " ",
-                    react_1["default"].createElement("br", null),
-                    react_1["default"].createElement("br", null),
-                    "Artist Wallet ",
-                    react_1["default"].createElement("br", null),
-                    " ",
-                    react_1["default"].createElement("a", { href: "https://bscscan.com/address/" }, "-"),
-                    " ",
-                    react_1["default"].createElement("br", null),
-                    react_1["default"].createElement("br", null),
-                    "Viralata Finance Wallet ",
-                    react_1["default"].createElement("br", null),
-                    " ",
-                    react_1["default"].createElement("a", { href: "https://bscscan.com/address/0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3" }, "0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3"),
-                    " ",
-                    react_1["default"].createElement("br", null),
-                    react_1["default"].createElement("br", null),
-                    react_1["default"].createElement("br", null),
-                    "You can also donate directly to the wallets above using BEP20 tokens.")),
+                    react_1["default"].createElement("div", { style: { textAlign: 'center' } },
+                        react_1["default"].createElement("p", null, "Charity Fund Wallet"),
+                        react_1["default"].createElement("img", { src: '/images/QR_CODE.png', alt: "Viralata Finance Charity Fund" }),
+                        react_1["default"].createElement("br", null),
+                        react_1["default"].createElement(uikit_1.Flex, { mb: "32px", justifyContent: "center", style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' } },
+                            react_1["default"].createElement(react_2.Link, { style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }, href: "https://bscscan.com/address/0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e" }, "0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e"),
+                            react_1["default"].createElement(CopyToClipboard_1["default"], { toCopy: "0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e" })),
+                        react_1["default"].createElement("p", null, "Artist Wallet"),
+                        react_1["default"].createElement(uikit_1.Flex, { mb: "32px", justifyContent: "center", style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' } },
+                            react_1["default"].createElement(react_2.Link, { style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }, href: "https://bscscan.com/address/-" }, "-"),
+                            react_1["default"].createElement(CopyToClipboard_1["default"], { toCopy: "-" })),
+                        react_1["default"].createElement("p", null, "Viralata Finance Wallet"),
+                        react_1["default"].createElement(uikit_1.Flex, { mb: "68px", justifyContent: "center", style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' } },
+                            react_1["default"].createElement(react_2.Link, { style: { fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }, href: "https://bscscan.com/address/0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3" }, "0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3"),
+                            react_1["default"].createElement(CopyToClipboard_1["default"], { toCopy: "0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3" })),
+                        "You can also donate directly to the wallets above using BEP20 tokens.",
+                        ' '))),
             react_1["default"].createElement("br", null),
             react_1["default"].createElement("br", null),
             react_1["default"].createElement("h2", { className: "neon-words" },
@@ -393,7 +390,8 @@ var Donate = function () {
                     react_1["default"].createElement("a", { href: "https://viralatometro.com" }, "viralatometro.com."),
                     " ",
                     react_1["default"].createElement("br", null),
-                    " Also you can read our document about it by ",
+                    " Also you can read our document about it by",
+                    ' ',
                     react_1["default"].createElement("a", { href: "https://drive.google.com/file/d/1bZ8wrgbQb1iS52DiSyX3igPkjesuN2LI/view?usp=sharing" }, "clicking here.")))))
     // <>
     //   <AppBody>
