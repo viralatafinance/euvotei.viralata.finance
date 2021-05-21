@@ -74,9 +74,10 @@ const GlobalStyle = createGlobalStyle`
 .slide-container {
   z-index: 4;
   flex: 1;
-  display: flex;
+  display: grid;
   width: 100%;
   padding: 20px 0px;
+  grid-template-columns: 35px auto 35px;
 
   > button {
     appearance: none;
