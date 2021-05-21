@@ -430,25 +430,34 @@ const Donate = () => {
             </ul>
             <br />
             <div style={{ textAlign: 'center' }}>
-              <span style={{display: 'block'}}>Charity Fund Wallet</span>
+              <span style={{ display: 'block' }}>Charity Fund Wallet</span>
               <img src={'/images/QR_CODE.png'} alt="Viralata Finance Charity Fund" />
               <br />
               <Flex mb="48px" justifyContent="center" style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }}>
-                <Link style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }} href={`https://bscscan.com/address/0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e`}>
+                <Link
+                  style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)', wordBreak: 'break-all' }}
+                  href={`https://bscscan.com/address/0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e`}
+                >
                   0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e
                 </Link>
                 <CopyToClipboard toCopy={'0x9220557A6dDa69a1837c1B88359D55Aa6bE9A77e'} />
               </Flex>
               <span>Artist Wallet</span>
               <Flex mb="48px" justifyContent="center" style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }}>
-                <Link style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }} href={`https://bscscan.com/address/0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e`}>
+                <Link
+                  style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)', wordBreak: 'break-all' }}
+                  href={`https://bscscan.com/address/0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e`}
+                >
                   0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e
                 </Link>
                 <CopyToClipboard toCopy={'0xC7C2c42680bbD494302A5Be4e1312f2e7954DD4e'} />
               </Flex>
               <span>Viralata Finance Wallet</span>
               <Flex mb="68px" justifyContent="center" style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }}>
-                <Link style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)' }} href={`https://bscscan.com/address/0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3`}>
+                <Link
+                  style={{ fontSize: 18, color: isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)', wordBreak: 'break-all' }}
+                  href={`https://bscscan.com/address/0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3`}
+                >
                   0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3
                 </Link>
                 <CopyToClipboard toCopy={'0xE2905203e911f7f591Db51Dc9ECb8f541BCC74B3'} />
@@ -487,8 +496,8 @@ const Donate = () => {
                 .filter((r) => r.featured === true)
                 .map((t, i) => {
                   return (
-                    <li key={i}>
-                      {t.name} - <a href={t.instagramLink}>{t.instagram}</a>
+                    <li key={i} style={{marginBottom: 25}}>
+                      {t.name} <br /> <a href={t.instagramLink}>{t.instagram}</a>
                     </li>
                   )
                 })}
@@ -503,8 +512,8 @@ const Donate = () => {
             <ul>
               {testimonials.map((t, i) => {
                 return (
-                  <li key={i}>
-                    {t.name} - <a href={t.instagramLink}>{t.instagram}</a>
+                  <li key={i} style={{marginBottom: 25}}>
+                    {t.name} <br /> <a href={t.instagramLink}>{t.instagram}</a>
                   </li>
                 )
               })}

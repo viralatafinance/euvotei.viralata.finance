@@ -247,7 +247,6 @@ const GlobalStyle = createGlobalStyle`
 
     a {
       color: rgb(69,7,254);
-      word-break: break-all !important;
     }
     
     ul { 
@@ -309,7 +308,6 @@ const GlobalStyle = createGlobalStyle`
   // box-shadow: 0px 0px 5px 3px #0ff;
 
   a {
-    word-break: break-all !important;
     color: rgb(0,255,252);
   }
   
