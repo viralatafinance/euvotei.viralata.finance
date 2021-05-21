@@ -2,6 +2,7 @@ import { Page } from '@geist-ui/react'
 import React from 'react'
 import styled from 'styled-components'
 import Header from './Header'
+import Footer from './Footer'
 
 const StyledPage = styled(Page)`
   padding: 0px !important;
@@ -31,7 +32,7 @@ const Layout: React.FC = ({ children }) => {
     <StyledPage size="100%">
       <Header />
       <StyledContent>{children}</StyledContent>
-      {/* <Footer /> */}
+      <Footer />
     </StyledPage>
   )
 }

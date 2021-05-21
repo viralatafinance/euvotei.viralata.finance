@@ -97,6 +97,7 @@ const GlobalStyle = createGlobalStyle`
     transition: opacity 0.3s;
     opacity: 0.7;
     z-index: 5;
+    width: 40px;
 
     &:hover {
       opacity: 1;
@@ -120,7 +121,7 @@ const GlobalStyle = createGlobalStyle`
   background-position: center center;
   background-repeat: no-repeat;
   transition: transform 0.5s ease-in-out;
-  opacity: 0.2;
+  opacity: 0.1;
   padding: 20px;
   border-radius: 10px;
 
@@ -208,6 +209,39 @@ const GlobalStyle = createGlobalStyle`
 }
 
 
+.neon-content-light {
+  
+  .neon-words {
+    &__word {
+      color: #111;
+      animation: none;
+    }
+  }
+
+  .neon-block {
+
+    background-color: rgba(255,255,255,0.25);
+    color: #111;
+
+    a {
+      color: rgb(69,7,254)
+    }
+    
+    ul { 
+      color: #111;
+  
+      li {       
+        color: #111;
+      }
+      
+      li:before {
+        color: #111;
+    }
+  }
+
+  }
+}
+
 .neon-words {
   min-height: 100%;
   display: flex;
@@ -219,20 +253,78 @@ const GlobalStyle = createGlobalStyle`
   &__word {
     font-size: 1.5rem;
     text-align: center;
-    line-height: 1.5rem;
+    line-height: 1.8rem;
     color: #c6e2ff;
-    animation: neon .1s ease-in-out infinite alternate;    
+    animation: neon 1s ease-in-out infinite alternate;    
     margin-bottom: 20px;    
     letter-spacing: 2px;
+    
+    &__small {
+      font-size: 1.2rem;
+      text-align: center;
+      line-height: 1.5rem;
+      color: #c6e2ff;
+      animation: neon 1s ease-in-out infinite alternate;    
+      margin-bottom: 20px;    
+      letter-spacing: 2px;
+    }
   }
+
 
 }
 
+
+.neon-block {
+  color: #c6e2ff;
+  text-align: left;
+  text-transform: none;
+  font-size: 24px;
+  padding: 40px;
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  letter-spacing: 1px;
+  // box-shadow: 0px 0px 5px 3px #0ff;
+
+  ul {
+    color: #c6e2ff;
+
+    li {      
+      color: #c6e2ff;  
+    }
+    
+    li:before {
+    content: '–';
+    display: inline-block;
+    color: #c6e2ff;  
+    margin-left: -1.5rem;
+  }
+}
 /*-- Animation Keyframes --*/
 
 // animation
 
 @keyframes neon {
+  from {
+    text-shadow:
+    0 0 1px rgba(202,228,225,0.92),
+    0 0 8px rgba(202,228,225,0.34),
+    0 0 2px rgba(30,132,242,0.52),
+    0 0 1px rgba(30,132,242,0.72),
+    0 0 34px rgba(30,132,242,0.78),
+    0 0 19px rgba(30,132,242,0.72);
+  }
+  to {
+    text-shadow:
+    0 0 1px rgba(202,228,225,0.98),
+    0 0 8px rgba(202,228,225,0.42),
+    0 0 2px rgba(30,132,242,0.58),
+    0 0 2px rgba(30,132,242,0.74),
+    0 0 38px rgba(30,132,242,0.88),
+    0 0 15px rgba(30,132,242,0.9);
+  }
+}
+
+@keyframes neon2 {
   from {
     text-shadow:
     0 0 5px rgba(202,228,225,0.92),
@@ -252,6 +344,8 @@ const GlobalStyle = createGlobalStyle`
     0 0 55px rgba(30,132,242,0.9);
   }
 }
+
+
 
 
 

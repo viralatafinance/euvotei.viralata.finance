@@ -25,17 +25,17 @@ const Logo = styled.a`
 `
 
 const LogoImage = styled.img`
-  max-height: 150px !important;
+  max-height: 100px !important;
 `
 
-const StyledConnect = styled(Tag)`
+const StyledConnect = styled(({ isDark, ...rest }) => <Tag {...rest} />)`
   border: 2px solid transparent !important;
   background: transparent !important;
-  color: #4bf2cd !important;
+  color: ${props => props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'}  !important;
   font-size: 16px !important;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: 2px solid #4bf2cd;
+  border: 2px solid ${props => props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)'};
   padding: 10px 25px !important;
   height: auto !important;
   border-radius: 6px;
@@ -75,18 +75,19 @@ const Header: React.FC = () => {
     <StyledPageHeader>
       <ConnectModal isOpen={connectModal.visible} onDismiss={() => connectModal.setVisible(false)} login={handleLogin} />
       <AccountModal isOpen={accountModal.visible} onDismiss={() => accountModal.setVisible(false)} account={account || ''} logout={deactivate} />
-      <Grid.Container justify="center">
+      <Grid.Container justify="space-between">
         <Logo href="https://dogira.viralata.finance">
           <LogoImage src={isDesktop ? '/images/logo-black.png' : '/images/logo.png'} alt="Vira-lata Finance" />
         </Logo>
-        <div role="button" aria-hidden="true" style={{ cursor: 'pointer', marginTop: 10 }} onClick={switchLightMode} onKeyDown={switchLightMode}>
+        <Grid xs alignItems="center" justify="flex-end" />
+        <div role="button" aria-hidden="true" style={{ cursor: 'pointer', marginTop: 35, marginRight: 20 }} onClick={switchLightMode} onKeyDown={switchLightMode}>
           <Sun color={!isDark ? 'rgb(69,7,254)' : 'rgb(0,255,252,0.2)'} />
-          <span> </span>
+          <span style={{marginRight: 5}}> </span>
           <Moon color={isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254,0.2)'} />
         </div>
-        {/* <Grid xs alignItems="center" justify="flex-end" />
         <FlexDiv>
           <StyledConnect
+            isDark={isDark}
             onClick={() => {
               if (account) {
                 accountModal.setVisible(true)
@@ -97,7 +98,7 @@ const Header: React.FC = () => {
           >
             {account ? `${account.substr(0, 4)}...${account.substr(-4)}` : `Connect Wallet`}
           </StyledConnect>
-        </FlexDiv> */}
+        </FlexDiv>
       </Grid.Container>
     </StyledPageHeader>
   )

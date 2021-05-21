@@ -1,9 +1,9 @@
-import { Grid, Link, Page, Spacer, Text, useMediaQuery } from "@geist-ui/react";
-import React from "react";
-import styled from "styled-components";
+import { Grid, Link, Page, Spacer, Text, useMediaQuery } from '@geist-ui/react'
+import React from 'react'
+import styled from 'styled-components'
 
 const Footer: React.FC = () => {
-  const isDesktop = useMediaQuery("md", { match: "up" });
+  const isDesktop = useMediaQuery('md', { match: 'up' })
 
   const StyledPageFooter = styled(Page.Footer)`
     padding: 15px 20px;
@@ -13,19 +13,19 @@ const Footer: React.FC = () => {
     width: 100% !important;
     position: relative !important;
     margin-top: auto;
-  `;
+  `
 
   const StyledContent = styled.div`
     width: 100%;
     margin: 0px auto;
     max-width: 1400px;
     color: white;
-  `;
+  `
 
   const StyledContentTop = styled(StyledContent)`
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding: 60px 20px 30px 20px !important;
-  `;
+  `
 
   const StyledContentBottom = styled(StyledContent)`
     padding: 30px 20px !important;
@@ -41,13 +41,13 @@ const Footer: React.FC = () => {
         justify-content: center;
       }
     `}
-  `;
+  `
 
   const StyledLink = styled(Link)`
     &:hover {
-      color: #4bf2cd !important;
+      color: #00b0f2 !important;
     }
-  `;
+  `
 
   const StyledSocialMediaLinks = styled.div`
     ${!isDesktop &&
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
     width: 100%;
     text-align: center
   `}
-  `;
+  `
 
   return (
     <StyledPageFooter>
@@ -64,49 +64,40 @@ const Footer: React.FC = () => {
           <Grid xs={12} sm={8} style={{ marginBottom: 20 }}>
             <div>
               <Text h3>Viralata Finance</Text>
-              <StyledLink href="#">Home</StyledLink>
+              <StyledLink href="https://viralata.finance#">Website</StyledLink>
               <Spacer y={0.5} />
-              <StyledLink href="#">Trade</StyledLink>
+              <StyledLink href="https://t.me/viralatafinance">Telegram</StyledLink>
               <Spacer y={0.5} />
-              <StyledLink href="#">Staking</StyledLink>
+              <StyledLink href="https://twitter.com/viralatafinance">Twitter</StyledLink>
               <Spacer y={0.5} />
-              <StyledLink href="#">FAQ</StyledLink>
+              <StyledLink href="https://exchange.viralata.finance">Buy</StyledLink>
             </div>
           </Grid>
           <Grid xs={12} sm={8} style={{ marginBottom: 20 }}>
             <div>
-              <Text h3>CONTRACTS</Text>
-              <StyledLink href="#">REAU Token</StyledLink>
+              <Text h3>Dogira Token</Text>
+              <StyledLink href="https://dogira.net/">Website</StyledLink>
+              <Spacer y={0.5} />
+              <StyledLink href="https://t.me/dogiratoken">Telegram</StyledLink>
+              <Spacer y={0.5} />
+              <StyledLink href="https://twitter.com/DogiraOfficial">Twitter</StyledLink>
+              <Spacer y={0.5} />
+              <StyledLink href="https://app.uniswap.org/#/swap?inputCurrency=0x4b86e0295e7d32433ffa6411b82b4f4e56a581e1">Buy</StyledLink>
             </div>
           </Grid>
           <Grid xs={24} sm={8} style={{ marginBottom: 20 }}>
             <StyledSocialMediaLinks>
-              <Text h3>SOCIAL MEDIA</Text>
-              <StyledLink href="#">Telegram</StyledLink>
-              <Spacer y={0.5} />
-              <StyledLink href="#">Twitter</StyledLink>
-              <Spacer y={0.5} />
-              <StyledLink href="#">Medium</StyledLink>
-              <Spacer y={0.5} />
-              <StyledLink href="#">Github</StyledLink>
+              <img src={isDesktop ? '/images/logo-black.png' : '/images/logo.png'} alt="Vira-lata Finance" />
             </StyledSocialMediaLinks>
           </Grid>
         </Grid.Container>
       </StyledContentTop>
       <StyledContentBottom>
-        <Grid.Container gap={2} justify={isDesktop ? "flex-start" : "center"}>
-          <Grid xs={!isDesktop && 24}>
-            © Viralata Finance. All rights reserved.
-          </Grid>
-          <Grid>
-            <StyledLink href="#">Terms</StyledLink>
-          </Grid>
-          <Grid>
-            <StyledLink href="#">Privacy Policy</StyledLink>
-          </Grid>
+        <Grid.Container gap={2} justify={isDesktop ? 'flex-start' : 'center'}>
+          <Grid xs={!isDesktop && 24}>© Viralata Finance. All rights reserved.</Grid>
         </Grid.Container>
       </StyledContentBottom>
     </StyledPageFooter>
-  );
-};
-export default Footer;
+  )
+}
+export default Footer
