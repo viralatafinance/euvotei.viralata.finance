@@ -1,24 +1,33 @@
 [
-  { "inputs": [{ "internalType": "contract ViralataCollectibles", "name": "collectible", "type": "address" }], "stateMutability": "nonpayable", "type": "constructor" },
+  { "inputs": [{ "internalType": "contract ViralataDogiraCollectibles", "name": "collectible", "type": "address" }], "stateMutability": "nonpayable", "type": "constructor" },
   {
     "anonymous": false,
     "inputs": [
       { "indexed": false, "internalType": "address", "name": "caller", "type": "address" },
       {
         "components": [
-          { "internalType": "string", "name": "name", "type": "string" },
-          { "internalType": "string", "name": "description", "type": "string" },
           { "internalType": "string", "name": "uri", "type": "string" },
+          {
+            "components": [
+              { "internalType": "address", "name": "charityAddr", "type": "address" },
+              { "internalType": "uint256", "name": "charityAmount", "type": "uint256" },
+              { "internalType": "address", "name": "artistAddr", "type": "address" },
+              { "internalType": "uint256", "name": "artistAmount", "type": "uint256" },
+              { "internalType": "address", "name": "devAddr", "type": "address" },
+              { "internalType": "uint256", "name": "devAmount", "type": "uint256" }
+            ],
+            "internalType": "struct ViralataDogiraCollectiblesFactory.ReceiverInfo",
+            "name": "receivers",
+            "type": "tuple"
+          },
           { "internalType": "address", "name": "spendable", "type": "address" },
           { "internalType": "uint256", "name": "price", "type": "uint256" },
-          { "internalType": "address", "name": "receiver", "type": "address" },
           { "internalType": "uint256", "name": "startBlock", "type": "uint256" },
           { "internalType": "uint256", "name": "endBlock", "type": "uint256" },
-          { "internalType": "uint256", "name": "limit", "type": "uint256" },
-          { "internalType": "bool", "name": "exists", "type": "bool" }
+          { "internalType": "uint256", "name": "limit", "type": "uint256" }
         ],
         "indexed": false,
-        "internalType": "struct ViralataCollectiblesFactory.CollectibleEditionInfo",
+        "internalType": "struct ViralataDogiraCollectiblesFactory.EditionInfo",
         "name": "edition",
         "type": "tuple"
       }
@@ -42,19 +51,28 @@
       { "indexed": false, "internalType": "uint256", "name": "editionId", "type": "uint256" },
       {
         "components": [
-          { "internalType": "string", "name": "name", "type": "string" },
-          { "internalType": "string", "name": "description", "type": "string" },
           { "internalType": "string", "name": "uri", "type": "string" },
+          {
+            "components": [
+              { "internalType": "address", "name": "charityAddr", "type": "address" },
+              { "internalType": "uint256", "name": "charityAmount", "type": "uint256" },
+              { "internalType": "address", "name": "artistAddr", "type": "address" },
+              { "internalType": "uint256", "name": "artistAmount", "type": "uint256" },
+              { "internalType": "address", "name": "devAddr", "type": "address" },
+              { "internalType": "uint256", "name": "devAmount", "type": "uint256" }
+            ],
+            "internalType": "struct ViralataDogiraCollectiblesFactory.ReceiverInfo",
+            "name": "receivers",
+            "type": "tuple"
+          },
           { "internalType": "address", "name": "spendable", "type": "address" },
           { "internalType": "uint256", "name": "price", "type": "uint256" },
-          { "internalType": "address", "name": "receiver", "type": "address" },
           { "internalType": "uint256", "name": "startBlock", "type": "uint256" },
           { "internalType": "uint256", "name": "endBlock", "type": "uint256" },
-          { "internalType": "uint256", "name": "limit", "type": "uint256" },
-          { "internalType": "bool", "name": "exists", "type": "bool" }
+          { "internalType": "uint256", "name": "limit", "type": "uint256" }
         ],
         "indexed": false,
-        "internalType": "struct ViralataCollectiblesFactory.CollectibleEditionInfo",
+        "internalType": "struct ViralataDogiraCollectiblesFactory.EditionInfo",
         "name": "edition",
         "type": "tuple"
       }
@@ -64,12 +82,22 @@
   },
   {
     "inputs": [
-      { "internalType": "string", "name": "_name", "type": "string" },
-      { "internalType": "string", "name": "_description", "type": "string" },
       { "internalType": "string", "name": "_uri", "type": "string" },
+      {
+        "components": [
+          { "internalType": "address", "name": "charityAddr", "type": "address" },
+          { "internalType": "uint256", "name": "charityAmount", "type": "uint256" },
+          { "internalType": "address", "name": "artistAddr", "type": "address" },
+          { "internalType": "uint256", "name": "artistAmount", "type": "uint256" },
+          { "internalType": "address", "name": "devAddr", "type": "address" },
+          { "internalType": "uint256", "name": "devAmount", "type": "uint256" }
+        ],
+        "internalType": "struct ViralataDogiraCollectiblesFactory.ReceiverInfo",
+        "name": "_receivers",
+        "type": "tuple"
+      },
       { "internalType": "address", "name": "_spendable", "type": "address" },
       { "internalType": "uint256", "name": "_price", "type": "uint256" },
-      { "internalType": "address", "name": "_receiver", "type": "address" },
       { "internalType": "uint256", "name": "_startBlock", "type": "uint256" },
       { "internalType": "uint256", "name": "_endBlock", "type": "uint256" },
       { "internalType": "uint256", "name": "_limit", "type": "uint256" }
@@ -80,58 +108,28 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "uint256", "name": "editionId", "type": "uint256" },
-      { "internalType": "uint256", "name": "amount", "type": "uint256" }
-    ],
-    "name": "buy",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "name": "collectibleEditionInfo",
+    "name": "editionInfo",
     "outputs": [
-      { "internalType": "string", "name": "name", "type": "string" },
-      { "internalType": "string", "name": "description", "type": "string" },
       { "internalType": "string", "name": "uri", "type": "string" },
-      { "internalType": "address", "name": "spendable", "type": "address" },
-      { "internalType": "uint256", "name": "price", "type": "uint256" },
-      { "internalType": "address", "name": "receiver", "type": "address" },
-      { "internalType": "uint256", "name": "startBlock", "type": "uint256" },
-      { "internalType": "uint256", "name": "endBlock", "type": "uint256" },
-      { "internalType": "uint256", "name": "limit", "type": "uint256" },
-      { "internalType": "bool", "name": "exists", "type": "bool" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "name": "collectibleInfo",
-    "outputs": [
-      { "internalType": "uint256", "name": "editionId", "type": "uint256" },
       {
         "components": [
-          { "internalType": "string", "name": "name", "type": "string" },
-          { "internalType": "string", "name": "description", "type": "string" },
-          { "internalType": "string", "name": "uri", "type": "string" },
-          { "internalType": "address", "name": "spendable", "type": "address" },
-          { "internalType": "uint256", "name": "price", "type": "uint256" },
-          { "internalType": "address", "name": "receiver", "type": "address" },
-          { "internalType": "uint256", "name": "startBlock", "type": "uint256" },
-          { "internalType": "uint256", "name": "endBlock", "type": "uint256" },
-          { "internalType": "uint256", "name": "limit", "type": "uint256" },
-          { "internalType": "bool", "name": "exists", "type": "bool" }
+          { "internalType": "address", "name": "charityAddr", "type": "address" },
+          { "internalType": "uint256", "name": "charityAmount", "type": "uint256" },
+          { "internalType": "address", "name": "artistAddr", "type": "address" },
+          { "internalType": "uint256", "name": "artistAmount", "type": "uint256" },
+          { "internalType": "address", "name": "devAddr", "type": "address" },
+          { "internalType": "uint256", "name": "devAmount", "type": "uint256" }
         ],
-        "internalType": "struct ViralataCollectiblesFactory.CollectibleEditionInfo",
-        "name": "edition",
+        "internalType": "struct ViralataDogiraCollectiblesFactory.ReceiverInfo",
+        "name": "receivers",
         "type": "tuple"
       },
-      { "internalType": "uint256", "name": "collectibleNo", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountSpent", "type": "uint256" },
-      { "internalType": "uint256", "name": "blockNo", "type": "uint256" }
+      { "internalType": "address", "name": "spendable", "type": "address" },
+      { "internalType": "uint256", "name": "price", "type": "uint256" },
+      { "internalType": "uint256", "name": "startBlock", "type": "uint256" },
+      { "internalType": "uint256", "name": "endBlock", "type": "uint256" },
+      { "internalType": "uint256", "name": "limit", "type": "uint256" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -144,6 +142,56 @@
     "type": "function"
   },
   { "inputs": [], "name": "getEditionsLength", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "from", "type": "address" },
+      { "internalType": "address", "name": "to", "type": "address" },
+      { "internalType": "uint256", "name": "editionId", "type": "uint256" },
+      { "internalType": "uint256", "name": "amount", "type": "uint256" }
+    ],
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "nftInfo",
+    "outputs": [
+      { "internalType": "uint256", "name": "editionId", "type": "uint256" },
+      {
+        "components": [
+          { "internalType": "string", "name": "uri", "type": "string" },
+          {
+            "components": [
+              { "internalType": "address", "name": "charityAddr", "type": "address" },
+              { "internalType": "uint256", "name": "charityAmount", "type": "uint256" },
+              { "internalType": "address", "name": "artistAddr", "type": "address" },
+              { "internalType": "uint256", "name": "artistAmount", "type": "uint256" },
+              { "internalType": "address", "name": "devAddr", "type": "address" },
+              { "internalType": "uint256", "name": "devAmount", "type": "uint256" }
+            ],
+            "internalType": "struct ViralataDogiraCollectiblesFactory.ReceiverInfo",
+            "name": "receivers",
+            "type": "tuple"
+          },
+          { "internalType": "address", "name": "spendable", "type": "address" },
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "uint256", "name": "startBlock", "type": "uint256" },
+          { "internalType": "uint256", "name": "endBlock", "type": "uint256" },
+          { "internalType": "uint256", "name": "limit", "type": "uint256" }
+        ],
+        "internalType": "struct ViralataDogiraCollectiblesFactory.EditionInfo",
+        "name": "edition",
+        "type": "tuple"
+      },
+      { "internalType": "uint256", "name": "collectibleNo", "type": "uint256" },
+      { "internalType": "uint256", "name": "amountSpent", "type": "uint256" },
+      { "internalType": "uint256", "name": "blockNo", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
   { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
   { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
@@ -163,12 +211,22 @@
   {
     "inputs": [
       { "internalType": "uint256", "name": "_editionId", "type": "uint256" },
-      { "internalType": "string", "name": "_name", "type": "string" },
-      { "internalType": "string", "name": "_description", "type": "string" },
       { "internalType": "string", "name": "_uri", "type": "string" },
+      {
+        "components": [
+          { "internalType": "address", "name": "charityAddr", "type": "address" },
+          { "internalType": "uint256", "name": "charityAmount", "type": "uint256" },
+          { "internalType": "address", "name": "artistAddr", "type": "address" },
+          { "internalType": "uint256", "name": "artistAmount", "type": "uint256" },
+          { "internalType": "address", "name": "devAddr", "type": "address" },
+          { "internalType": "uint256", "name": "devAmount", "type": "uint256" }
+        ],
+        "internalType": "struct ViralataDogiraCollectiblesFactory.ReceiverInfo",
+        "name": "_receivers",
+        "type": "tuple"
+      },
       { "internalType": "address", "name": "_spendable", "type": "address" },
       { "internalType": "uint256", "name": "_price", "type": "uint256" },
-      { "internalType": "address", "name": "_receiver", "type": "address" },
       { "internalType": "uint256", "name": "_startBlock", "type": "uint256" },
       { "internalType": "uint256", "name": "_endBlock", "type": "uint256" },
       { "internalType": "uint256", "name": "_limit", "type": "uint256" }

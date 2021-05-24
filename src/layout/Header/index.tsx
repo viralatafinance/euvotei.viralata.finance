@@ -1,13 +1,16 @@
-import { Grid, Page, Tag, useMediaQuery, useModal } from '@geist-ui/react'
+import { Grid, Page, Tag, useMediaQuery, useModal, Link } from '@geist-ui/react'
 import { Sun, Moon } from '@geist-ui/react-icons'
 import { ConnectorNames } from '@pancakeswap-libs/uikit'
+import numeral from 'numeral'
 import useTheme from 'hooks/useTheme'
+import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
 import ConnectModal from 'components/WalletModal/ConnectModal'
 import AccountModal from 'components/WalletModal/AccountModal'
 import { useWeb3React } from '@web3-react/core'
 import { connectorsByName } from 'connectors'
 import React, { useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
+import { useCollectibleEditions } from '../../data/Collectibles'
 
 const StyledPageHeader = styled(Page.Header)`
   z-index: 999;
@@ -24,10 +27,11 @@ const Logo = styled.a`
 `
 
 const LogoImage = styled.img`
-  max-height: 100px !important;
+  margin: 0 auto;
 `
 
 const StyledConnect = styled(({ isDark, ...rest }) => <Tag {...rest} />)`
+  text-align: center;
   border: 2px solid transparent !important;
   background: transparent !important;
   color: ${(props) => (props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)')} !important;
@@ -49,6 +53,17 @@ const StyledConnect = styled(({ isDark, ...rest }) => <Tag {...rest} />)`
   }
 `
 
+const StyledLink = styled(({ isDark, ...rest }) => <Link {...rest} />)`
+  color: ${(props) => (props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)')} !important;
+  font-size: 16px !important;
+  font-weight: 700;
+  text-align: center;
+
+  :hover {
+    transform: scale(1.05);
+  }
+`
+
 const Header: React.FC = () => {
   const connectModal = useModal(false)
   const accountModal = useModal(false)
@@ -56,7 +71,12 @@ const Header: React.FC = () => {
 
   const isDesktop = useMediaQuery('md', { match: 'up' })
 
+  const REAU = '0x4c79b8c9cB0BD62B047880603a9DEcf36dE28344'
+
   const { account, activate, deactivate } = useWeb3React()
+  const [token] = useTokenBalancesWithLoadingIndicator(account, [
+    { address: REAU, chainId: 56, decimals: 9, name: 'Viralata Finance', symbol: 'REAU', equals: undefined, sortsBefore: undefined },
+  ])
 
   const handleLogin = (connectorId: ConnectorNames) => {
     const connector = connectorsByName[connectorId]
@@ -76,18 +96,16 @@ const Header: React.FC = () => {
       <Grid.Container justify="space-between" direction={isDesktop ? 'row' : 'column-reverse'}>
         <Logo href="https://dogira.viralata.finance">
           <LogoImage
-            style={{ width: isDesktop ? 'auto' : '100%', height: isDesktop ? 'auto' : 'auto' }}
+            style={{ width: isDesktop ? 'auto' : '100%', maxHeight: isDesktop ? '100px' : 'auto', height: isDesktop ? 'auto' : 'auto' }}
             src={isDesktop ? '/images/logo-black.png' : '/images/logo.png'}
             alt="Vira-lata Finance"
           />
         </Logo>
         <Grid xs alignItems="center" justify={isDesktop ? 'flex-end' : 'space-between'} style={{ marginBottom: isDesktop ? 0 : 20 }}>
-          <div role="button" aria-hidden="true" style={{ cursor: 'pointer', marginRight: 20 }} onClick={switchLightMode} onKeyDown={switchLightMode}>
-            <Sun color={!isDark ? 'rgb(69,7,254)' : 'rgb(0,255,252,0.2)'} />
-            <span style={{ marginRight: 5 }}> </span>
-            <Moon color={isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254,0.2)'} />
-          </div>
-          <FlexDiv>
+          <StyledLink isDark={isDark} href="https://exchange.viralata.finance" style={{ margin: '0 15px' }}>
+            BUY REAU
+          </StyledLink>
+          <FlexDiv style={{ margin: '0 15px' }}>
             <StyledConnect
               isDark={isDark}
               onClick={() => {
@@ -98,9 +116,14 @@ const Header: React.FC = () => {
                 }
               }}
             >
-              {account ? `${account.substr(0, 4)}...${account.substr(-4)}` : `Connect Wallet`}
+              {account ? `${account.substr(0, 4)}...${account.substr(-4)} (${numeral(token[REAU]?.toSignificant(6)).format('0.000a')} REAU)` : `Connect Wallet`}
             </StyledConnect>
           </FlexDiv>
+          <div role="button" aria-hidden="true" style={{ cursor: 'pointer' }} onClick={switchLightMode} onKeyDown={switchLightMode}>
+            <Sun color={!isDark ? 'rgb(69,7,254)' : 'rgb(0,255,252,0.2)'} />
+            <span style={{ marginRight: 5 }}> </span>
+            <Moon color={isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254,0.2)'} />
+          </div>
         </Grid>
       </Grid.Container>
     </StyledPageHeader>

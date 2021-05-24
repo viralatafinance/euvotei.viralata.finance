@@ -295,6 +295,20 @@ const GlobalStyle = createGlobalStyle`
 
 }
 
+.viralata-modal-wrapper {
+  background-color: transparent !important;
+  h2 {
+    font-size: 40px !important;
+    color: rgb(0,255,252) !important;
+  }
+}
+
+
+.viralata-modal-wrapper-light {
+  h2 {
+    color: rgb(234 250 21) !important;
+  }
+}
 
 .neon-block {
   color: #c6e2ff;

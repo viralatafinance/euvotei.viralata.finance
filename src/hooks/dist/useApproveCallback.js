@@ -81,7 +81,6 @@ function useApproveCallback(amountToApprove, spender) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log('approve');
                     if (approvalState !== ApprovalState.NOT_APPROVED) {
                         console.error('approve was called unnecessarily');
                         return [2 /*return*/];

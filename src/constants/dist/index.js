@@ -23,12 +23,12 @@ exports.MIN_ETH = exports.BLOCKED_PRICE_IMPACT_NON_EXPERT = exports.PRICE_IMPACT
 var sdk_1 = require("@pancakeswap-libs/sdk");
 exports.ROUTER_ADDRESS = '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F';
 exports.COLLECTIBLE_FACTORY_ADDRESS = (_a = {},
-    _a[sdk_1.ChainId.MAINNET] = '0xd7eC2C74808c1f15AdC9028E092A08D5d446b364',
-    _a[sdk_1.ChainId.BSCTESTNET] = '0xd7eC2C74808c1f15AdC9028E092A08D5d446b364',
+    _a[sdk_1.ChainId.MAINNET] = '0xCf2E0e0486Cd10A6B5a633f3b85f624F3756f029',
+    _a[sdk_1.ChainId.BSCTESTNET] = '0xf3486Eb4cC234D52994f7DDE3C77F640d6D02F42',
     _a);
 exports.COLLECTIBLE_ADDRESS = (_b = {},
-    _b[sdk_1.ChainId.MAINNET] = '0x4374dB92BC4c551450A1Cb27ed99090307b11D5D',
-    _b[sdk_1.ChainId.BSCTESTNET] = '0x4374dB92BC4c551450A1Cb27ed99090307b11D5D',
+    _b[sdk_1.ChainId.MAINNET] = '0xdFc239d74C4cb8344A40463f523Bd54dA2300fC7',
+    _b[sdk_1.ChainId.BSCTESTNET] = '0xF300737E8a7E180025B1b5523302Ed6F814B49C0',
     _b);
 exports.DAI = new sdk_1.Token(sdk_1.ChainId.MAINNET, '0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3', 18, 'DAI', 'Dai Stablecoin');
 exports.BUSD = new sdk_1.Token(sdk_1.ChainId.MAINNET, '0xe9e7cea3dedca5984780bafc599bd69add087d56', 18, 'BUSD', 'Binance USD');

@@ -1,19 +1,26 @@
 /* eslint-disable */
-import React, { useContext, useState } from 'react'
-import { Text, useMediaQuery, Link } from '@geist-ui/react'
+import React, { useContext, useEffect, useState } from 'react'
+import { Text, useMediaQuery, Link, Modal, useModal, Grid, Loading, useToasts, Spinner } from '@geist-ui/react'
+import { TokenAmount } from '@pancakeswap-libs/sdk'
+import { BigNumber } from 'ethers'
 import { Flex } from '@pancakeswap-libs/uikit'
 import Tilt from 'react-tilt'
 import styled from 'styled-components'
+import numeral from 'numeral'
+import axios from 'axios'
+
+import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
+import { ApprovalState, useApproveCallbackCollectibleFactory } from 'hooks/useApproveCallback'
 import { Wrapper } from '../../components/swap/styleds'
 import ButtonCTA from '../../components/ButtonCTA'
 import { useActiveWeb3React } from '../../hooks'
 import useI18n from '../../hooks/useI18n'
 import AppBody from '../AppBody'
-import DonateCard from './components/DonateCard'
-import { useCollectibleEditions } from '../../data/Collectibles'
-import DonateConfirmModal from './components/DonateConfirmModal'
 import useTheme from '../../hooks/useTheme'
 import CopyToClipboard from '../../components/WalletModal/CopyToClipboard'
+import { useCollectibleFactoryContract, useCollectibleContract } from '../../hooks/useContract'
+
+const REAU = '0x4c79b8c9cB0BD62B047880603a9DEcf36dE28344'
 
 export const StyledImage = styled.img``
 
@@ -52,139 +59,6 @@ export const StyledTilt = styled(Tilt)`
   display: flex;
   flex-direction: column;
   max-width: 400px;
-`
-
-const slides = [
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'NFT Collection',
-    description: 'soon',
-    image: './images/NFT-PREV1.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'NFT Collection',
-    description: 'soon',
-    image: './images/NFT-PREV2.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'NFT Collection',
-    description: 'soon',
-    image: './images/NFT-PREV3.jpg',
-  },
-  {
-    title: 'Viralata + Dogira',
-    subtitle: 'NFT Collection',
-    description: 'soon',
-    image: './images/NFT-PREV4.jpg',
-  },
-]
-
-function useTilt(active) {
-  const ref = React.useRef(null)
-
-  React.useEffect(() => {
-    if (!ref.current || !active) {
-      return
-    }
-
-    const state = {
-      rect: undefined,
-      mouseX: undefined,
-      mouseY: undefined,
-    }
-
-    const el = ref.current
-
-    const handleMouseMove = (e) => {
-      if (el) {
-        if (!state.rect) {
-          state.rect = el.getBoundingClientRect()
-        }
-        state.mouseX = e.clientX
-        state.mouseY = e.clientY
-
-        const px = state ? (state.mouseX - state.rect.left) / state.rect.width : 0
-
-        const py = state ? (state.mouseY - state.rect.top) / state.rect.height : 0
-
-        el.style.setProperty('--px', px)
-
-        el.style.setProperty('--py', py)
-      }
-    }
-
-    if (el) {
-      el.addEventListener('mousemove', handleMouseMove)
-    }
-
-    return () => {
-      if (el) {
-        el.removeEventListener('mousemove', handleMouseMove)
-      }
-    }
-  }, [active])
-
-  return ref
-}
-
-const initialState = {
-  slideIndex: 0,
-}
-
-const slidesReducer = (state, event) => {
-  if (event.type === 'NEXT') {
-    return {
-      ...state,
-      slideIndex: (state.slideIndex + 1) % slides.length,
-    }
-  }
-  if (event.type === 'PREV') {
-    return {
-      ...state,
-      slideIndex: state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1,
-    }
-  }
-}
-
-function Slide({ slide, offset }) {
-  const active = offset === 0 ? true : null
-  const ref = useTilt(active)
-
-  const myStyle = {
-    '--offset': offset,
-    '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1,
-    // filter: !active ? 'hue-rotate(90deg)' : 'none',
-  } as React.CSSProperties
-
-  return (
-    <div ref={ref} className="slide" data-active={active} style={myStyle}>
-      <div className="slideBackground" />
-      <div
-        className="slideContent"
-        style={{
-          backgroundImage: `url('${slide.image}')`,
-        }}
-      >
-        <div className="slideContentInner">
-          <h2 className="slideTitle">{slide.title}</h2>
-          <h3 className="slideSubtitle">{slide.subtitle}</h3>
-          <p className="slideDescription">{slide.description}</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-const StyledContent = styled.div`
-  z-index: 999;
-  color: #fff;
-  text-align: center;
-  max-width: 1200px;
-  padding: 20px;
-  margin-top: 50px;
-  margin-bottom: 100px;
 `
 
 const testimonials = [
@@ -363,28 +237,260 @@ const testimonials = [
   },
 ]
 
+function useTilt(active) {
+  const ref = React.useRef(null)
+
+  React.useEffect(() => {
+    if (!ref.current || !active) {
+      return
+    }
+
+    const state = {
+      rect: undefined,
+      mouseX: undefined,
+      mouseY: undefined,
+    }
+
+    const el = ref.current
+
+    const handleMouseMove = (e) => {
+      if (el) {
+        if (!state.rect) {
+          state.rect = el.getBoundingClientRect()
+        }
+        state.mouseX = e.clientX
+        state.mouseY = e.clientY
+
+        const px = state ? (state.mouseX - state.rect.left) / state.rect.width : 0
+
+        const py = state ? (state.mouseY - state.rect.top) / state.rect.height : 0
+
+        el.style.setProperty('--px', px)
+
+        el.style.setProperty('--py', py)
+      }
+    }
+
+    if (el) {
+      el.addEventListener('mousemove', handleMouseMove)
+    }
+
+    return () => {
+      if (el) {
+        el.removeEventListener('mousemove', handleMouseMove)
+      }
+    }
+  }, [active])
+
+  return ref
+}
+
+const StyledButton = styled.button`
+  z-index: 999;
+  color: #fff;
+  text-align: center;
+  max-width: 1200px;
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+`
+
+function Slide({ slide, offset, onView, isDark, balance, account }) {
+  const REAU_TOKEN = { address: REAU, chainId: 56, decimals: 9, name: 'Viralata Finance', symbol: 'REAU', equals: undefined, sortsBefore: undefined }
+
+  const [approval, approveCallback] = useApproveCallbackCollectibleFactory(new TokenAmount(REAU_TOKEN, slide.price))
+  const collectibleFactoryContract = useCollectibleFactoryContract(true)
+  const [loading, setLoading] = useState(false)
+  const [toasts, setToast] = useToasts()
+
+  const ApproveAndBuy = async () => {
+    setLoading(true)
+
+    try {
+      if (approval != ApprovalState.APPROVED) {
+        await approveCallback();
+      } else {
+        const tx = await collectibleFactoryContract['mint'](account, account, slide.editionId, slide.priceRaw.toString())
+        await tx.wait(3)
+
+        setToast({ text: 'You have successfully bought!' })
+      }
+    } catch (ex) {
+      setToast({ text: ex.message })
+    }
+
+    setLoading(false)
+  }
+
+  const active = offset === 0 ? true : null
+  const ref = useTilt(active)
+
+  const myStyle = {
+    '--offset': offset,
+    '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1,
+    // filter: !active ? 'hue-rotate(90deg)' : 'none',
+  } as React.CSSProperties
+
+  const NFTPrice = slide.price
+  const soldOut = slide.limit - slide.owners == 0
+  const hasREAU = balance?.toSignificant(6) > NFTPrice
+
+  return (
+    <div ref={ref} className="slide" data-active={active} style={myStyle}>
+      <div className="slideBackground" />
+      <div
+        onClick={() => active && onView(slide)}
+        className="slideContent"
+        style={{
+          backgroundImage: `url('${slide.image}')`,
+        }}
+      >
+        <div className="slideContentInner">
+          <h2 className="slideTitle">{slide.title}</h2>
+          <h3 className="slideSubtitle">{slide.subtitle}</h3>
+          <p className="slideDescription">{slide.description}</p>
+        </div>
+      </div>
+      <ButtonCTA isDark={isDark} disabled={!account || !hasREAU || soldOut || loading} onClick={() => ApproveAndBuy()}>
+        <span style={{ textTransform: 'uppercase' }}>
+          {account
+            ? soldOut
+              ? 'SOLD OUT'
+              : hasREAU
+              ? approval != ApprovalState.APPROVED
+                ? `APPROVE (${numeral(NFTPrice).format('0a')} REAU)`
+                : `BUY (${numeral(NFTPrice).format('0a')} REAU)`
+              : `insufficient balance (${numeral(NFTPrice).format('0a')} REAU)`
+            : 'CONNECT WALLET'}
+        </span>
+        {loading && <Spinner style={{ marginLeft: 10 }} />}
+      </ButtonCTA>
+    </div>
+  )
+}
+
+const StyledContent = styled.div`
+  z-index: 999;
+  color: #fff;
+  text-align: center;
+  max-width: 1200px;
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+`
+
+export interface CollectibleEdition {
+  uri: string
+  currency?: any
+  price: string
+  startBlock: string
+  endBlock: string
+  limit: string
+  owners: string
+}
+
 const Donate = () => {
   const TranslateString = useI18n()
 
   const { account } = useActiveWeb3React()
-  const collectible = useCollectibleEditions()
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
-  const [state, dispatch] = React.useReducer(slidesReducer, initialState)
+  const { isDark, toggleTheme, theme } = useTheme()
+  const { setVisible, bindings } = useModal()
+  const [loading, setLoading] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(null)
+  const [slides, setSlides] = useState([])
   const isDesktop = useMediaQuery('md', { match: 'up' })
   const cContainer = isDesktop ? 'slide-container' : 'slide-container slide-container-mobile'
   const cName = isDesktop ? 'slides' : 'slides slides-mobile'
   const cWrapperName = isDesktop ? 'slides-wrapper' : 'slides-wrapper slides-wrapper-mobile'
-  const { isDark, toggleTheme, theme } = useTheme()
+  const cModal = isDark ? 'viralata-modal-wrapper' : 'viralata-modal-wrapper viralata-modal-wrapper-light'
+
+  const REAU_TOKEN = { address: REAU, chainId: 56, decimals: 9, name: 'Viralata Finance', symbol: 'REAU', equals: undefined, sortsBefore: undefined }
+
+  const [token] = useTokenBalancesWithLoadingIndicator(account, [REAU_TOKEN])
+
+  const collectibleFactoryContract = useCollectibleFactoryContract(false)
+
+  useEffect(() => {
+    async function fetch() {
+      const knownImages = ['0.jpg', '1.gif', '2.jpg', '3.gif', '4.jpg']
+      const collectibleEditions: CollectibleEdition[] = []
+      const slides = []
+      const editionLenght: any = await collectibleFactoryContract.callStatic['getEditionsLength']()
+
+      for (let index = 0; index < editionLenght; index++) {
+        const [uri, receivers, spendable, price, startBlock, endBlock, limit]: any = await collectibleFactoryContract['editionInfo'](index)
+        const owners: any = await collectibleFactoryContract['getEditionOwners'](index)
+        const json = await axios.get('https://ipfs.io/ipfs/' + uri)
+        collectibleEditions.push({
+          uri: 'https://ipfs.io/ipfs/' + uri,
+          currency: null,
+          price,
+          startBlock,
+          endBlock,
+          limit,
+          owners,
+        })
+        slides.push({
+          title: json.data.name,
+          subtitle: `[${limit - owners} of ${limit}]`,
+          description: ``,
+          image: knownImages[index] ? `./images/${knownImages[index]}` : 'https://ipfs.io/ipfs/' + json.data.image.replace('ipfs://', ''),
+          price: price / 10 ** 9,
+          priceRaw: price,
+          editionId: index,
+          limit: limit,
+          owners: owners,
+        })
+      }
+
+      setSlides(slides)
+    }
+
+    fetch()
+  }, [token])
+
+  const onView = (slide) => {
+    setVisible(true)
+    setCurrentSlide(slide)
+  }
+
+  const initialState = {
+    slideIndex: 0,
+  }
+
+  const slidesReducer = (state, event) => {
+    if (event.type === 'NEXT') {
+      return {
+        ...state,
+        slideIndex: (state.slideIndex + 1) % slides.length,
+      }
+    }
+    if (event.type === 'PREV') {
+      return {
+        ...state,
+        slideIndex: state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1,
+      }
+    }
+  }
+
+  const [state, dispatch] = React.useReducer(slidesReducer, initialState)
 
   return (
     <>
+      <Modal wrapClassName={cModal} width="100%" {...bindings}>
+        <Modal.Title style={{ justifyContent: 'flex-end', cursor: 'pointer' }} onClick={() => setVisible(false)}>
+          X
+        </Modal.Title>
+        <Modal.Content style={{ margin: '0 auto' }}>{currentSlide && <img style={{ objectFit: 'contain' }} src={currentSlide.image} alt={currentSlide.title} />}</Modal.Content>
+      </Modal>
       <div className={cContainer}>
         <button onClick={() => dispatch({ type: 'PREV' })}>‹</button>
         <div className={cWrapperName}>
           <div className={cName}>
             {[...slides, ...slides, ...slides].map((slide, i) => {
               let offset = slides.length + (state.slideIndex - i)
-              return <Slide slide={slide} offset={offset} key={i} />
+              return <Slide account={account} balance={token[REAU]} isDark={isDark} onView={onView} slide={slide} offset={offset} key={i} />
             })}
           </div>
         </div>
@@ -496,7 +602,7 @@ const Donate = () => {
                 .filter((r) => r.featured === true)
                 .map((t, i) => {
                   return (
-                    <li key={i} style={{marginBottom: 25}}>
+                    <li key={i} style={{ marginBottom: 25 }}>
                       {t.name} <br /> <a href={t.instagramLink}>{t.instagram}</a>
                     </li>
                   )
@@ -512,7 +618,7 @@ const Donate = () => {
             <ul>
               {testimonials.map((t, i) => {
                 return (
-                  <li key={i} style={{marginBottom: 25}}>
+                  <li key={i} style={{ marginBottom: 25 }}>
                     {t.name} <br /> <a href={t.instagramLink}>{t.instagram}</a>
                   </li>
                 )

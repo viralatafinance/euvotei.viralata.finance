@@ -27,8 +27,6 @@ function DonateCard(_a, showTotalDonated) {
         collectible.uri && (react_1["default"].createElement(exports.StyledTilt, { options: { max: 40, scale: 1.08 } },
             react_1["default"].createElement(exports.StyledImage, { alt: "NFT", src: "/images/bitcao.png" }))),
         react_1["default"].createElement(exports.StyledWrapper, null,
-            react_1["default"].createElement(exports.StyledTitle, null, collectible.name),
-            react_1["default"].createElement(exports.StyledText, null, collectible.description),
             react_1["default"].createElement(exports.StyledText, null,
                 "Doa\u00E7\u00E3o m\u00EDnima:",
                 ' ',

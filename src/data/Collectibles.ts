@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { useMemo } from 'react'
+import { useMemo, useCallback } from 'react'
 import { Currency, Token } from '@pancakeswap-libs/sdk'
 import { useCollectibleFactoryContract } from '../hooks/useContract'
 import { useSingleCallResult } from '../state/multicall/hooks'
@@ -9,35 +9,50 @@ import { useCurrency } from '../hooks/Tokens'
 // or contract total supply cannot be fetched
 
 export interface CollectibleEdition {
-  name: string
-  description: string
   uri: string
   currency?: Token
   price: BigNumber
-  receiver: string
   startBlock: string
   endBlock: string
-  limit: string
+  limit: BigNumber
   owners: BigNumber
 }
 
-export function useCollectibleEditions(): CollectibleEdition | undefined {
+export function useCollectibleEditions(): CollectibleEdition[] | undefined {
+  /*
   const contract = useCollectibleFactoryContract(false)
 
-  // const editionsLength: BigNumber = useSingleCallResult(contract, 'getEditionsLength')?.result?.[0]
-  // const result: CollectibleEdition[] = []
+  const editionLenght: any = useSingleCallResult(contract, 'getEditionsLength')?.result
 
-  const editionInfo: any = useSingleCallResult(contract, 'collectibleEditionInfo', [0])?.result
-  const editionOwners: BigNumber = useSingleCallResult(contract, 'getEditionOwners', [0])?.result?.[0]
-  const [, , , editionSpendable] = editionInfo || []
-  const editionCurrency = useCurrency(editionSpendable)
-
-  const convertEditionInfo = (info, owners, currency) => {
-    const [name, description, uri, spendable, price, receiver, startBlock, endBlock, limit] = info || []
-    return { name, description, uri, currency, price, receiver, startBlock, endBlock, limit, owners }
+  if (editionLenght) {
+    console.log('useCollectibleEditions')
   }
 
-  return useMemo(() => convertEditionInfo(editionInfo, editionOwners, editionCurrency), [editionInfo, editionOwners, editionCurrency])
+  const convertEditionInfo = (info, owners, currency) => {
+    const [uri, , spendable, price, receiver, startBlock, endBlock, limit] = info || []
+    return { uri, currency, price, receiver, startBlock, endBlock, limit, owners }
+  }
+
+  return useMemo(() => {
+    const collectibleEditions: CollectibleEdition[] = []
+    for (let i = 0; i < editionLenght; i++) {
+      const [uri, receivers, spendable, price, startBlock, endBlock, limit]: any = useSingleCallResult(contract, 'editionInfo', [i])?.result
+      const owners: BigNumber = useSingleCallResult(contract, 'getEditionOwners', [i])?.result?.[0]
+      const currency = useCurrency(spendable)
+      collectibleEditions.push({
+        uri,
+        currency: null,
+        price,
+        startBlock,
+        endBlock,
+        limit,
+        owners,
+      })
+    }
+    return collectibleEditions
+  }, [editionLenght, contract])
+  */
+  return null
 }
 
 export default useCollectibleEditions

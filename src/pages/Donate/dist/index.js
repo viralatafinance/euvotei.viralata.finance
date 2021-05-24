@@ -14,6 +14,42 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -26,112 +62,27 @@ exports.StyledTilt = exports.StyledText = exports.StyledTitle = exports.StyledWr
 /* eslint-disable */
 var react_1 = require("react");
 var react_2 = require("@geist-ui/react");
+var sdk_1 = require("@pancakeswap-libs/sdk");
 var uikit_1 = require("@pancakeswap-libs/uikit");
 var react_tilt_1 = require("react-tilt");
 var styled_components_1 = require("styled-components");
+var numeral_1 = require("numeral");
+var axios_1 = require("axios");
+var hooks_1 = require("state/wallet/hooks");
+var useApproveCallback_1 = require("hooks/useApproveCallback");
 var styleds_1 = require("../../components/swap/styleds");
-var hooks_1 = require("../../hooks");
+var ButtonCTA_1 = require("../../components/ButtonCTA");
+var hooks_2 = require("../../hooks");
 var useI18n_1 = require("../../hooks/useI18n");
-var Collectibles_1 = require("../../data/Collectibles");
 var useTheme_1 = require("../../hooks/useTheme");
 var CopyToClipboard_1 = require("../../components/WalletModal/CopyToClipboard");
+var useContract_1 = require("../../hooks/useContract");
+var REAU = '0x4c79b8c9cB0BD62B047880603a9DEcf36dE28344';
 exports.StyledImage = styled_components_1["default"].img(templateObject_1 || (templateObject_1 = __makeTemplateObject([""], [""])));
 exports.StyledWrapper = styled_components_1["default"](styleds_1.Wrapper)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  padding: 30px 40px;\n  margin-left: 100px;\n  width: 60%;\n  color: #fffd;\n  border: 1px solid #4bf2cd;\n  border-radius: 10px;\n  box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px, rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px !important;\n"], ["\n  padding: 30px 40px;\n  margin-left: 100px;\n  width: 60%;\n  color: #fffd;\n  border: 1px solid #4bf2cd;\n  border-radius: 10px;\n  box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px, rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px !important;\n"])));
 exports.StyledTitle = styled_components_1["default"](react_2.Text)(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-size: 75px;\n  line-height: 95px;\n  font-weight: 900;\n  text-transform: uppercase;\n  color: #fff;\n  letter-spacing: -2px;\n"], ["\n  font-size: 75px;\n  line-height: 95px;\n  font-weight: 900;\n  text-transform: uppercase;\n  color: #fff;\n  letter-spacing: -2px;\n"])));
 exports.StyledText = styled_components_1["default"](react_2.Text)(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  margin: 0px;\n  font-weight: 300;\n  color: white !important;\n  font-size: 32px;\n  text-align: center;\n  margin-top: 10px;\n"], ["\n  margin: 0px;\n  font-weight: 300;\n  color: white !important;\n  font-size: 32px;\n  text-align: center;\n  margin-top: 10px;\n"])));
 exports.StyledTilt = styled_components_1["default"](react_tilt_1["default"])(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  width: 100%;\n  justify-content: center;\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  max-width: 400px;\n"], ["\n  width: 100%;\n  justify-content: center;\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  max-width: 400px;\n"])));
-var slides = [
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'NFT Collection',
-        description: 'soon',
-        image: './images/NFT-PREV1.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'NFT Collection',
-        description: 'soon',
-        image: './images/NFT-PREV2.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'NFT Collection',
-        description: 'soon',
-        image: './images/NFT-PREV3.jpg'
-    },
-    {
-        title: 'Viralata + Dogira',
-        subtitle: 'NFT Collection',
-        description: 'soon',
-        image: './images/NFT-PREV4.jpg'
-    },
-];
-function useTilt(active) {
-    var ref = react_1["default"].useRef(null);
-    react_1["default"].useEffect(function () {
-        if (!ref.current || !active) {
-            return;
-        }
-        var state = {
-            rect: undefined,
-            mouseX: undefined,
-            mouseY: undefined
-        };
-        var el = ref.current;
-        var handleMouseMove = function (e) {
-            if (el) {
-                if (!state.rect) {
-                    state.rect = el.getBoundingClientRect();
-                }
-                state.mouseX = e.clientX;
-                state.mouseY = e.clientY;
-                var px = state ? (state.mouseX - state.rect.left) / state.rect.width : 0;
-                var py = state ? (state.mouseY - state.rect.top) / state.rect.height : 0;
-                el.style.setProperty('--px', px);
-                el.style.setProperty('--py', py);
-            }
-        };
-        if (el) {
-            el.addEventListener('mousemove', handleMouseMove);
-        }
-        return function () {
-            if (el) {
-                el.removeEventListener('mousemove', handleMouseMove);
-            }
-        };
-    }, [active]);
-    return ref;
-}
-var initialState = {
-    slideIndex: 0
-};
-var slidesReducer = function (state, event) {
-    if (event.type === 'NEXT') {
-        return __assign(__assign({}, state), { slideIndex: (state.slideIndex + 1) % slides.length });
-    }
-    if (event.type === 'PREV') {
-        return __assign(__assign({}, state), { slideIndex: state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1 });
-    }
-};
-function Slide(_a) {
-    var slide = _a.slide, offset = _a.offset;
-    var active = offset === 0 ? true : null;
-    var ref = useTilt(active);
-    var myStyle = {
-        '--offset': offset,
-        '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1
-    };
-    return (react_1["default"].createElement("div", { ref: ref, className: "slide", "data-active": active, style: myStyle },
-        react_1["default"].createElement("div", { className: "slideBackground" }),
-        react_1["default"].createElement("div", { className: "slideContent", style: {
-                backgroundImage: "url('" + slide.image + "')"
-            } },
-            react_1["default"].createElement("div", { className: "slideContentInner" },
-                react_1["default"].createElement("h2", { className: "slideTitle" }, slide.title),
-                react_1["default"].createElement("h3", { className: "slideSubtitle" }, slide.subtitle),
-                react_1["default"].createElement("p", { className: "slideDescription" }, slide.description)))));
-}
-var StyledContent = styled_components_1["default"].div(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  z-index: 999;\n  color: #fff;\n  text-align: center;\n  max-width: 1200px;\n  padding: 20px;\n  margin-top: 50px;\n  margin-bottom: 100px;\n"], ["\n  z-index: 999;\n  color: #fff;\n  text-align: center;\n  max-width: 1200px;\n  padding: 20px;\n  margin-top: 50px;\n  margin-bottom: 100px;\n"])));
 var testimonials = [
     {
         image: '5.jpg',
@@ -301,24 +252,217 @@ var testimonials = [
         instagramLink: 'https://www.instagram.com/patasfocinhos/'
     },
 ];
+function useTilt(active) {
+    var ref = react_1["default"].useRef(null);
+    react_1["default"].useEffect(function () {
+        if (!ref.current || !active) {
+            return;
+        }
+        var state = {
+            rect: undefined,
+            mouseX: undefined,
+            mouseY: undefined
+        };
+        var el = ref.current;
+        var handleMouseMove = function (e) {
+            if (el) {
+                if (!state.rect) {
+                    state.rect = el.getBoundingClientRect();
+                }
+                state.mouseX = e.clientX;
+                state.mouseY = e.clientY;
+                var px = state ? (state.mouseX - state.rect.left) / state.rect.width : 0;
+                var py = state ? (state.mouseY - state.rect.top) / state.rect.height : 0;
+                el.style.setProperty('--px', px);
+                el.style.setProperty('--py', py);
+            }
+        };
+        if (el) {
+            el.addEventListener('mousemove', handleMouseMove);
+        }
+        return function () {
+            if (el) {
+                el.removeEventListener('mousemove', handleMouseMove);
+            }
+        };
+    }, [active]);
+    return ref;
+}
+var StyledButton = styled_components_1["default"].button(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  z-index: 999;\n  color: #fff;\n  text-align: center;\n  max-width: 1200px;\n  padding: 20px;\n  margin-top: 50px;\n  margin-bottom: 100px;\n"], ["\n  z-index: 999;\n  color: #fff;\n  text-align: center;\n  max-width: 1200px;\n  padding: 20px;\n  margin-top: 50px;\n  margin-bottom: 100px;\n"])));
+function Slide(_a) {
+    var _this = this;
+    var slide = _a.slide, offset = _a.offset, onView = _a.onView, isDark = _a.isDark, balance = _a.balance, account = _a.account;
+    var REAU_TOKEN = { address: REAU, chainId: 56, decimals: 9, name: 'Viralata Finance', symbol: 'REAU', equals: undefined, sortsBefore: undefined };
+    var _b = useApproveCallback_1.useApproveCallbackCollectibleFactory(new sdk_1.TokenAmount(REAU_TOKEN, slide.price)), approval = _b[0], approveCallback = _b[1];
+    var collectibleFactoryContract = useContract_1.useCollectibleFactoryContract(true);
+    var _c = react_1.useState(false), loading = _c[0], setLoading = _c[1];
+    var _d = react_2.useToasts(), toasts = _d[0], setToast = _d[1];
+    var ApproveAndBuy = function () { return __awaiter(_this, void 0, void 0, function () {
+        var tx, ex_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    setLoading(true);
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 7, , 8]);
+                    if (!(approval != useApproveCallback_1.ApprovalState.APPROVED)) return [3 /*break*/, 3];
+                    return [4 /*yield*/, approveCallback()];
+                case 2:
+                    _a.sent();
+                    return [3 /*break*/, 6];
+                case 3: return [4 /*yield*/, collectibleFactoryContract['mint'](account, account, slide.editionId, slide.priceRaw.toString())];
+                case 4:
+                    tx = _a.sent();
+                    return [4 /*yield*/, tx.wait(3)];
+                case 5:
+                    _a.sent();
+                    setToast({ text: 'You have successfully bought!' });
+                    _a.label = 6;
+                case 6: return [3 /*break*/, 8];
+                case 7:
+                    ex_1 = _a.sent();
+                    setToast({ text: ex_1.message });
+                    return [3 /*break*/, 8];
+                case 8:
+                    setLoading(false);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    var active = offset === 0 ? true : null;
+    var ref = useTilt(active);
+    var myStyle = {
+        '--offset': offset,
+        '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1
+    };
+    var NFTPrice = slide.price;
+    var soldOut = slide.limit - slide.owners == 0;
+    var hasREAU = (balance === null || balance === void 0 ? void 0 : balance.toSignificant(6)) > NFTPrice;
+    return (react_1["default"].createElement("div", { ref: ref, className: "slide", "data-active": active, style: myStyle },
+        react_1["default"].createElement("div", { className: "slideBackground" }),
+        react_1["default"].createElement("div", { onClick: function () { return active && onView(slide); }, className: "slideContent", style: {
+                backgroundImage: "url('" + slide.image + "')"
+            } },
+            react_1["default"].createElement("div", { className: "slideContentInner" },
+                react_1["default"].createElement("h2", { className: "slideTitle" }, slide.title),
+                react_1["default"].createElement("h3", { className: "slideSubtitle" }, slide.subtitle),
+                react_1["default"].createElement("p", { className: "slideDescription" }, slide.description))),
+        react_1["default"].createElement(ButtonCTA_1["default"], { isDark: isDark, disabled: !account || !hasREAU || soldOut || loading, onClick: function () { return ApproveAndBuy(); } },
+            react_1["default"].createElement("span", { style: { textTransform: 'uppercase' } }, account
+                ? soldOut
+                    ? 'SOLD OUT'
+                    : hasREAU
+                        ? approval != useApproveCallback_1.ApprovalState.APPROVED
+                            ? "APPROVE (" + numeral_1["default"](NFTPrice).format('0a') + " REAU)"
+                            : "BUY (" + numeral_1["default"](NFTPrice).format('0a') + " REAU)"
+                        : "insufficient balance (" + numeral_1["default"](NFTPrice).format('0a') + " REAU)"
+                : 'CONNECT WALLET'),
+            loading && react_1["default"].createElement(react_2.Spinner, { style: { marginLeft: 10 } }))));
+}
+var StyledContent = styled_components_1["default"].div(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n  z-index: 999;\n  color: #fff;\n  text-align: center;\n  max-width: 1200px;\n  padding: 20px;\n  margin-top: 50px;\n  margin-bottom: 100px;\n"], ["\n  z-index: 999;\n  color: #fff;\n  text-align: center;\n  max-width: 1200px;\n  padding: 20px;\n  margin-top: 50px;\n  margin-bottom: 100px;\n"])));
 var Donate = function () {
     var TranslateString = useI18n_1["default"]();
-    var account = hooks_1.useActiveWeb3React().account;
-    var collectible = Collectibles_1.useCollectibleEditions();
+    var account = hooks_2.useActiveWeb3React().account;
     var _a = react_1.useState(false), confirmModalVisible = _a[0], setConfirmModalVisible = _a[1];
-    var _b = react_1["default"].useReducer(slidesReducer, initialState), state = _b[0], dispatch = _b[1];
+    var _b = useTheme_1["default"](), isDark = _b.isDark, toggleTheme = _b.toggleTheme, theme = _b.theme;
+    var _c = react_2.useModal(), setVisible = _c.setVisible, bindings = _c.bindings;
+    var _d = react_1.useState(false), loading = _d[0], setLoading = _d[1];
+    var _e = react_1.useState(null), currentSlide = _e[0], setCurrentSlide = _e[1];
+    var _f = react_1.useState([]), slides = _f[0], setSlides = _f[1];
     var isDesktop = react_2.useMediaQuery('md', { match: 'up' });
     var cContainer = isDesktop ? 'slide-container' : 'slide-container slide-container-mobile';
     var cName = isDesktop ? 'slides' : 'slides slides-mobile';
     var cWrapperName = isDesktop ? 'slides-wrapper' : 'slides-wrapper slides-wrapper-mobile';
-    var _c = useTheme_1["default"](), isDark = _c.isDark, toggleTheme = _c.toggleTheme, theme = _c.theme;
+    var cModal = isDark ? 'viralata-modal-wrapper' : 'viralata-modal-wrapper viralata-modal-wrapper-light';
+    var REAU_TOKEN = { address: REAU, chainId: 56, decimals: 9, name: 'Viralata Finance', symbol: 'REAU', equals: undefined, sortsBefore: undefined };
+    var token = hooks_1.useTokenBalancesWithLoadingIndicator(account, [REAU_TOKEN])[0];
+    var collectibleFactoryContract = useContract_1.useCollectibleFactoryContract(false);
+    react_1.useEffect(function () {
+        function fetch() {
+            return __awaiter(this, void 0, void 0, function () {
+                var knownImages, collectibleEditions, slides, editionLenght, index, _a, uri, receivers, spendable, price, startBlock, endBlock, limit, owners, json;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            knownImages = ['0.jpg', '1.gif', '2.jpg', '3.gif', '4.jpg'];
+                            collectibleEditions = [];
+                            slides = [];
+                            return [4 /*yield*/, collectibleFactoryContract.callStatic['getEditionsLength']()];
+                        case 1:
+                            editionLenght = _b.sent();
+                            index = 0;
+                            _b.label = 2;
+                        case 2:
+                            if (!(index < editionLenght)) return [3 /*break*/, 7];
+                            return [4 /*yield*/, collectibleFactoryContract['editionInfo'](index)];
+                        case 3:
+                            _a = _b.sent(), uri = _a[0], receivers = _a[1], spendable = _a[2], price = _a[3], startBlock = _a[4], endBlock = _a[5], limit = _a[6];
+                            return [4 /*yield*/, collectibleFactoryContract['getEditionOwners'](index)];
+                        case 4:
+                            owners = _b.sent();
+                            return [4 /*yield*/, axios_1["default"].get('https://ipfs.io/ipfs/' + uri)];
+                        case 5:
+                            json = _b.sent();
+                            collectibleEditions.push({
+                                uri: 'https://ipfs.io/ipfs/' + uri,
+                                currency: null,
+                                price: price,
+                                startBlock: startBlock,
+                                endBlock: endBlock,
+                                limit: limit,
+                                owners: owners
+                            });
+                            slides.push({
+                                title: json.data.name,
+                                subtitle: "[" + (limit - owners) + " of " + limit + "]",
+                                description: "",
+                                image: knownImages[index] ? "./images/" + knownImages[index] : 'https://ipfs.io/ipfs/' + json.data.image.replace('ipfs://', ''),
+                                price: price / Math.pow(10, 9),
+                                priceRaw: price,
+                                editionId: index,
+                                limit: limit,
+                                owners: owners
+                            });
+                            _b.label = 6;
+                        case 6:
+                            index++;
+                            return [3 /*break*/, 2];
+                        case 7:
+                            setSlides(slides);
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        }
+        fetch();
+    }, [token]);
+    var onView = function (slide) {
+        setVisible(true);
+        setCurrentSlide(slide);
+    };
+    var initialState = {
+        slideIndex: 0
+    };
+    var slidesReducer = function (state, event) {
+        if (event.type === 'NEXT') {
+            return __assign(__assign({}, state), { slideIndex: (state.slideIndex + 1) % slides.length });
+        }
+        if (event.type === 'PREV') {
+            return __assign(__assign({}, state), { slideIndex: state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1 });
+        }
+    };
+    var _g = react_1["default"].useReducer(slidesReducer, initialState), state = _g[0], dispatch = _g[1];
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
+        react_1["default"].createElement(react_2.Modal, __assign({ wrapClassName: cModal, width: "100%" }, bindings),
+            react_1["default"].createElement(react_2.Modal.Title, { style: { justifyContent: 'flex-end', cursor: 'pointer' }, onClick: function () { return setVisible(false); } }, "X"),
+            react_1["default"].createElement(react_2.Modal.Content, { style: { margin: '0 auto' } }, currentSlide && react_1["default"].createElement("img", { style: { objectFit: 'contain' }, src: currentSlide.image, alt: currentSlide.title }))),
         react_1["default"].createElement("div", { className: cContainer },
             react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'PREV' }); } }, "\u2039"),
             react_1["default"].createElement("div", { className: cWrapperName },
                 react_1["default"].createElement("div", { className: cName }, __spreadArrays(slides, slides, slides).map(function (slide, i) {
                     var offset = slides.length + (state.slideIndex - i);
-                    return react_1["default"].createElement(Slide, { slide: slide, offset: offset, key: i });
+                    return react_1["default"].createElement(Slide, { account: account, balance: token[REAU], isDark: isDark, onView: onView, slide: slide, offset: offset, key: i });
                 }))),
             react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'NEXT' }); } }, "\u203A")),
         react_1["default"].createElement(StyledContent, { className: (!isDark ? 'neon-content-light' : '') + " " + (!isDesktop ? 'neon-content-mobile' : '') },
@@ -399,7 +543,7 @@ var Donate = function () {
                     react_1["default"].createElement("ul", null, testimonials
                         .filter(function (r) { return r.featured === true; })
                         .map(function (t, i) {
-                        return (react_1["default"].createElement("li", { key: i },
+                        return (react_1["default"].createElement("li", { key: i, style: { marginBottom: 25 } },
                             t.name,
                             " ",
                             react_1["default"].createElement("br", null),
@@ -412,7 +556,7 @@ var Donate = function () {
                 react_1["default"].createElement("span", { className: "neon-words__word" }, "6. Who are some previous NGOs that have been helped?"),
                 react_1["default"].createElement("span", { className: "neon-block" },
                     react_1["default"].createElement("ul", null, testimonials.map(function (t, i) {
-                        return (react_1["default"].createElement("li", { key: i, style: { marginBottom: 15 } },
+                        return (react_1["default"].createElement("li", { key: i, style: { marginBottom: 25 } },
                             t.name,
                             " ",
                             react_1["default"].createElement("br", null),
@@ -456,4 +600,4 @@ var Donate = function () {
     );
 };
 exports["default"] = Donate;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;

@@ -61,7 +61,7 @@ export default function DonateConfirmModal({ isOpen, collectible, onConfirm }: {
               'Ao doar você estará enviando seus tokens para o Fundo de Caridade Viralata que posteriormente serão enviados para as respectivas instituições de caridade.'
             )}
           </StyledText>
-          <StyledText>{TranslateString(1132, 'Após doar, você receberá em sua carteira um token único e colecionável como memória de seu ato de bondade.')}</StyledText>
+          {/* <StyledText>{TranslateString(1132, 'Após doar, você receberá em sua carteira um token único e colecionável como memória de seu ato de bondade.')}</StyledText>
           <StyledText>{TranslateString(1134, 'Você pode doar a quantidade de tokens que quiser acima do valor mínimo.')}</StyledText>
           <StyledText>
             {TranslateString(1134, 'Valor mínimo: ')}
@@ -102,7 +102,7 @@ export default function DonateConfirmModal({ isOpen, collectible, onConfirm }: {
             ) : (
               TranslateString(150, 'Confirmar doação')
             )}
-          </ButtonCTA>
+          </ButtonCTA> */}
         </AutoColumn>
       </WarningContainer>
     </Modal>

@@ -58,8 +58,8 @@ export default function DonateCard({ collectible }: DonateCardProps, showTotalDo
             </StyledTilt>
           )}
           <StyledWrapper>
-            <StyledTitle>{collectible.name}</StyledTitle>
-            <StyledText>{collectible.description}</StyledText>
+            {/* <StyledTitle>{collectible.name}</StyledTitle>
+            <StyledText>{collectible.description}</StyledText> */}
             <StyledText>
               Doação mínima:{' '}
               <b>
