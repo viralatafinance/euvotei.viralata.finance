@@ -356,7 +356,7 @@ function Slide(_a) {
                         ? approval != useApproveCallback_1.ApprovalState.APPROVED
                             ? "APPROVE (" + numeral_1["default"](NFTPrice).format('0a') + " REAU)"
                             : "BUY (" + numeral_1["default"](NFTPrice).format('0a') + " REAU)"
-                        : "insufficient balance (" + numeral_1["default"](NFTPrice).format('0a') + " REAU)"
+                        : "NO FUNDS (" + numeral_1["default"](NFTPrice).format('0a') + " REAU)"
                 : 'CONNECT WALLET'),
             loading && react_1["default"].createElement(react_2.Spinner, { style: { marginLeft: 10 } }))));
 }

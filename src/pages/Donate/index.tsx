@@ -360,7 +360,7 @@ function Slide({ slide, offset, onView, isDark, balance, account }) {
               ? approval != ApprovalState.APPROVED
                 ? `APPROVE (${numeral(NFTPrice).format('0a')} REAU)`
                 : `BUY (${numeral(NFTPrice).format('0a')} REAU)`
-              : `insufficient balance (${numeral(NFTPrice).format('0a')} REAU)`
+              : `NO FUNDS (${numeral(NFTPrice).format('0a')} REAU)`
             : 'CONNECT WALLET'}
         </span>
         {loading && <Spinner style={{ marginLeft: 10 }} />}
