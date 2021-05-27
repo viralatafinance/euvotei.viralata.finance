@@ -83,6 +83,7 @@ const GlobalStyle = createGlobalStyle`
   > button {    
     font-size: 25px !important;
     width: 25px  !important;
+    opacity: 1 !important;
   }
 
 }
