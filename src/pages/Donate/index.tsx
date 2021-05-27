@@ -8,6 +8,7 @@ import Tilt from 'react-tilt'
 import styled from 'styled-components'
 import numeral from 'numeral'
 import axios from 'axios'
+import { useSwipeable } from 'react-swipeable'
 
 import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
 import { ApprovalState, useApproveCallbackCollectibleFactory } from 'hooks/useApproveCallback'
@@ -308,7 +309,7 @@ function Slide({ slide, offset, onView, isDark, balance, account }) {
 
     try {
       if (approval != ApprovalState.APPROVED) {
-        await approveCallback();
+        await approveCallback()
       } else {
         const tx = await collectibleFactoryContract['mint'](account, account, slide.editionId, slide.priceRaw.toString())
         await tx.wait(3)
@@ -444,7 +445,7 @@ const Donate = () => {
         })
       }
 
-      setSlides(slides)
+      setSlides(slides.sort((a, b) => a.price < b.price ? -1 : 1));
     }
 
     fetch()
@@ -475,6 +476,14 @@ const Donate = () => {
   }
 
   const [state, dispatch] = React.useReducer(slidesReducer, initialState)
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: (eventData) => {
+      dispatch({ type: 'PREV' })
+    },
+    onSwipedRight: (eventData) => {
+      dispatch({ type: 'NEXT' })
+    },
+  })
 
   return (
     <>
@@ -484,8 +493,10 @@ const Donate = () => {
         </Modal.Title>
         <Modal.Content style={{ margin: '0 auto' }}>{currentSlide && <img style={{ objectFit: 'contain' }} src={currentSlide.image} alt={currentSlide.title} />}</Modal.Content>
       </Modal>
-      <div className={cContainer}>
-        <button onClick={() => dispatch({ type: 'PREV' })}>‹</button>
+      <div className={cContainer} {...swipeHandlers}>
+        <button style={{ color: isDark ? '#fff' : 'rgb(69,7,254)' }} onClick={() => dispatch({ type: 'PREV' })}>
+          ‹
+        </button>
         <div className={cWrapperName}>
           <div className={cName}>
             {[...slides, ...slides, ...slides].map((slide, i) => {
@@ -494,7 +505,9 @@ const Donate = () => {
             })}
           </div>
         </div>
-        <button onClick={() => dispatch({ type: 'NEXT' })}>›</button>
+        <button style={{ color: isDark ? '#fff' : 'rgb(69,7,254)' }} onClick={() => dispatch({ type: 'NEXT' })}>
+          ›
+        </button>
       </div>
       <StyledContent className={`${!isDark ? 'neon-content-light' : ''} ${!isDesktop ? 'neon-content-mobile' : ''}`}>
         <h2 className="neon-words">

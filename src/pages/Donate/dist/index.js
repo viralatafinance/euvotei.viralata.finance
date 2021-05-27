@@ -68,6 +68,7 @@ var react_tilt_1 = require("react-tilt");
 var styled_components_1 = require("styled-components");
 var numeral_1 = require("numeral");
 var axios_1 = require("axios");
+var react_swipeable_1 = require("react-swipeable");
 var hooks_1 = require("state/wallet/hooks");
 var useApproveCallback_1 = require("hooks/useApproveCallback");
 var styleds_1 = require("../../components/swap/styleds");
@@ -429,7 +430,7 @@ var Donate = function () {
                             index++;
                             return [3 /*break*/, 2];
                         case 7:
-                            setSlides(slides);
+                            setSlides(slides.sort(function (a, b) { return a.price < b.price ? -1 : 1; }));
                             return [2 /*return*/];
                     }
                 });
@@ -453,18 +454,26 @@ var Donate = function () {
         }
     };
     var _g = react_1["default"].useReducer(slidesReducer, initialState), state = _g[0], dispatch = _g[1];
+    var swipeHandlers = react_swipeable_1.useSwipeable({
+        onSwipedLeft: function (eventData) {
+            dispatch({ type: 'PREV' });
+        },
+        onSwipedRight: function (eventData) {
+            dispatch({ type: 'NEXT' });
+        }
+    });
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(react_2.Modal, __assign({ wrapClassName: cModal, width: "100%" }, bindings),
             react_1["default"].createElement(react_2.Modal.Title, { style: { justifyContent: 'flex-end', cursor: 'pointer' }, onClick: function () { return setVisible(false); } }, "X"),
             react_1["default"].createElement(react_2.Modal.Content, { style: { margin: '0 auto' } }, currentSlide && react_1["default"].createElement("img", { style: { objectFit: 'contain' }, src: currentSlide.image, alt: currentSlide.title }))),
-        react_1["default"].createElement("div", { className: cContainer },
-            react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'PREV' }); } }, "\u2039"),
+        react_1["default"].createElement("div", __assign({ className: cContainer }, swipeHandlers),
+            react_1["default"].createElement("button", { style: { color: isDark ? '#fff' : 'rgb(69,7,254)' }, onClick: function () { return dispatch({ type: 'PREV' }); } }, "\u2039"),
             react_1["default"].createElement("div", { className: cWrapperName },
                 react_1["default"].createElement("div", { className: cName }, __spreadArrays(slides, slides, slides).map(function (slide, i) {
                     var offset = slides.length + (state.slideIndex - i);
                     return react_1["default"].createElement(Slide, { account: account, balance: token[REAU], isDark: isDark, onView: onView, slide: slide, offset: offset, key: i });
                 }))),
-            react_1["default"].createElement("button", { onClick: function () { return dispatch({ type: 'NEXT' }); } }, "\u203A")),
+            react_1["default"].createElement("button", { style: { color: isDark ? '#fff' : 'rgb(69,7,254)' }, onClick: function () { return dispatch({ type: 'NEXT' }); } }, "\u203A")),
         react_1["default"].createElement(StyledContent, { className: (!isDark ? 'neon-content-light' : '') + " " + (!isDesktop ? 'neon-content-mobile' : '') },
             react_1["default"].createElement("h2", { className: "neon-words" },
                 react_1["default"].createElement("span", { className: "neon-words__word" }, "Viralata + Dogira is a partnership to help NGO's in raising funds"),

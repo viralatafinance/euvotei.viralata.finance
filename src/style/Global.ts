@@ -60,7 +60,7 @@ const GlobalStyle = createGlobalStyle`
 
   > button {    
     font-size: 20px !important;
-    width: 20px  !important;
+    width: 0px  !important;
   }
 
 }
@@ -81,8 +81,8 @@ const GlobalStyle = createGlobalStyle`
 
 .slide-container-mobile {
   > button {    
-    font-size: 20px !important;
-    width: 20px  !important;
+    font-size: 25px !important;
+    width: 25px  !important;
   }
 
 }
