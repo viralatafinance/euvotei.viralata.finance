@@ -352,9 +352,10 @@ function Slide({ slide, offset, onView, isDark, balance, account }) {
           <p className="slideDescription">{slide.description}</p>
         </div>
       </div>
-      <ButtonCTA isDark={isDark} disabled={!account || !hasREAU || soldOut || loading} onClick={() => ApproveAndBuy()}>
+      <ButtonCTA isDark={isDark} disabled={true}>
         <span style={{ textTransform: 'uppercase' }}>
-          {account
+          SALE ENDED
+          {/* {account
             ? soldOut
               ? 'SOLD OUT'
               : hasREAU
@@ -362,9 +363,9 @@ function Slide({ slide, offset, onView, isDark, balance, account }) {
                 ? `APPROVE (${numeral(NFTPrice).format('0a')} REAU)`
                 : `BUY (${numeral(NFTPrice).format('0a')} REAU)`
               : `NO FUNDS (${numeral(NFTPrice).format('0a')} REAU)`
-            : 'CONNECT WALLET'}
+            : 'CONNECT WALLET'} */}
         </span>
-        {loading && <Spinner style={{ marginLeft: 10 }} />}
+        {/* {loading && <Spinner style={{ marginLeft: 10 }} />} */}
       </ButtonCTA>
     </div>
   )
