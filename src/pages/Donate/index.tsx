@@ -86,10 +86,6 @@ const Donate = () => {
   const [totalClaimable, setTotalClaimable] = useState(0)
   const [totalClaimed, setTotalClaimed] = useState(0)
   const [forceReload, setForceReload] = useState(0)
-  const [editionOneClaimed, setEditionOneClaimed] = useState(0)
-  const [editionTwoClaimed, setEditionTwoClaimed] = useState(0)
-  const [editionThreeClaimed, setEditionThreeClaimed] = useState(0)
-
   const collectibleFactoryContract = useCollectibleFactoryContract(true)
 
   useEffect(() => {
@@ -100,16 +96,10 @@ const Donate = () => {
         const _claimed: any = await collectibleFactoryContract.claimed(account);
         const _totalClaimable: any = await collectibleFactoryContract.totalClaimable();
         const _totalClaimed: any = await collectibleFactoryContract.totalClaimed();
-        const _editionOneClaimed: any = await collectibleFactoryContract.editionClaimed(0);
-        const _editionTwoClaimed: any = await collectibleFactoryContract.editionClaimed(1);
-        const _editionThreeClaimed: any = await collectibleFactoryContract.editionClaimed(2);
         setClaimed(_claimed);
         setWhitelisted(_whitelisted);
         setTotalClaimable(_totalClaimable);
         setTotalClaimed(_totalClaimed);
-        setEditionOneClaimed(_editionOneClaimed);
-        setEditionTwoClaimed(_editionTwoClaimed);
-        setEditionThreeClaimed(_editionThreeClaimed);
       }
 
     }
@@ -147,7 +137,6 @@ const Donate = () => {
           <Grid xs={24} sm={8} style={{ marginBottom: 20 }}>
             <div>
               <img src="/images/blue-min.gif" alt="Vira-lata Finance" />
-              <span style={{position: 'relative', float: 'right', marginTop: -33, marginRight: 8}}>Resgatados {editionThreeClaimed.toString()}</span>
               <ButtonCTA disabled={claimed || !account || !whitelisted} onClick={() => { mint(2) }}>
                 {!account ? 'CONECTAR CARTEIRA' : !whitelisted ? 'NÃO ELEGÍVEL' : claimed ? 'JÁ RESGATOU' : 'RESGATAR'}
               </ButtonCTA>
@@ -156,7 +145,6 @@ const Donate = () => {
           <Grid xs={24} sm={8} style={{ marginBottom: 20 }}>
             <div>
               <img src="/images/grey-min.gif" alt="Vira-lata Finance" />
-              <span style={{position: 'relative', float: 'right', marginTop: -33, marginRight: 8}}>Resgatados {editionTwoClaimed.toString()}</span>
               <ButtonCTA disabled={claimed || !account || !whitelisted} onClick={() => { mint(1) }}>
                 {!account ? 'CONECTAR CARTEIRA' : !whitelisted ? 'NÃO ELEGÍVEL' : claimed ? 'JÁ RESGATOU' : 'RESGATAR'}
               </ButtonCTA>
@@ -165,7 +153,6 @@ const Donate = () => {
           <Grid xs={24} sm={8} style={{ marginBottom: 20 }}>
             <div>
               <img src="/images/white-min.gif" alt="Vira-lata Finance" />
-              <span style={{position: 'relative', float: 'right', marginTop: -33, marginRight: 8, color: '#333'}}>Resgatados {editionOneClaimed.toString()}</span>
               <ButtonCTA disabled={claimed || !account || !whitelisted} onClick={() => { mint(0) }}>
                 {!account ? 'CONECTAR CARTEIRA' : !whitelisted ? 'NÃO ELEGÍVEL' : claimed ? 'JÁ RESGATOU' : 'RESGATAR'}
               </ButtonCTA>
