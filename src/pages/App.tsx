@@ -36,7 +36,7 @@ const ContentWrapper = styled.div`
     left: 0;
     width: 100vw;
     min-height: 100vh;
-    background-color: ${(props) => (props.theme.isDark ? '#000048' : '#fea604')};
+    background-color: ${(props) => (props.theme.isDark ? '#000' : '#000')};
     background-image: ${(props) => (props.theme.isDark ? 'url(images/bg.jpg)' : 'url(images/bg.jpg)')};
     background-size: cover;
     background-repeat: no-repeat;
