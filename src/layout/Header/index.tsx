@@ -34,7 +34,7 @@ const StyledConnect = styled(({ isDark, ...rest }) => <Tag {...rest} />)`
   text-align: center;
   border: 2px solid transparent !important;
   background: transparent !important;
-  color: ${(props) => (props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)')} !important;
+  color: ${(props) => (props.isDark ? '#3cf0c8' : '#3cf0c8')} !important;
   font-size: 16px !important;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -53,16 +53,6 @@ const StyledConnect = styled(({ isDark, ...rest }) => <Tag {...rest} />)`
   }
 `
 
-const StyledLink = styled(({ isDark, ...rest }) => <Link {...rest} />)`
-  color: ${(props) => (props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)')} !important;
-  font-size: 16px !important;
-  font-weight: 700;
-  text-align: center;
-
-  :hover {
-    transform: scale(1.05);
-  }
-`
 
 const Header: React.FC = () => {
   const connectModal = useModal(false)
@@ -94,17 +84,14 @@ const Header: React.FC = () => {
       <ConnectModal isOpen={connectModal.visible} onDismiss={() => connectModal.setVisible(false)} login={handleLogin} />
       <AccountModal isOpen={accountModal.visible} onDismiss={() => accountModal.setVisible(false)} account={account || ''} logout={deactivate} />
       <Grid.Container justify="space-between" direction={isDesktop ? 'row' : 'column-reverse'}>
-        <Logo href="https://dogira.viralata.finance">
+        <Logo href="https://euvotei.viralata.finance">
           <LogoImage
-            style={{ width: isDesktop ? 'auto' : '100%', maxHeight: isDesktop ? '100px' : 'auto', height: isDesktop ? 'auto' : 'auto' }}
-            src={isDesktop ? '/images/logo-black.png' : '/images/logo.png'}
+            style={{ width: isDesktop ? 'auto' : 'auto', maxHeight: isDesktop ? '100px' : 'auto', height: isDesktop ? 'auto' : '100px' }}
+            src={isDesktop ? '/images/logo.png' : '/images/logo.png'}
             alt="Vira-lata Finance"
           />
         </Logo>
-        <Grid xs alignItems="center" justify={isDesktop ? 'flex-end' : 'space-between'} style={{ marginBottom: isDesktop ? 0 : 20 }}>
-          <StyledLink isDark={isDark} href="https://exchange.viralata.finance" style={{ margin: '0 15px' }}>
-            BUY REAU
-          </StyledLink>
+        <Grid xs alignItems="center" justify={isDesktop ? 'flex-end' : 'center'} style={{ marginBottom: isDesktop ? 0 : 20 }}>         
           <FlexDiv style={{ margin: '0 15px' }}>
             <StyledConnect
               isDark={isDark}
@@ -116,14 +103,14 @@ const Header: React.FC = () => {
                 }
               }}
             >
-              {account ? `${account.substr(0, 4)}...${account.substr(-4)} (${numeral(token[REAU]?.toSignificant(6)).format('0.000a')} REAU)` : `Connect Wallet`}
+              {account ? `${account.substr(0, 4)}...${account.substr(-4)}` : `CONECTAR`}
             </StyledConnect>
           </FlexDiv>
-          <div role="button" aria-hidden="true" style={{ cursor: 'pointer' }} onClick={switchLightMode} onKeyDown={switchLightMode}>
+          {/* <div role="button" aria-hidden="true" style={{ cursor: 'pointer' }} onClick={switchLightMode} onKeyDown={switchLightMode}>
             <Sun color={!isDark ? 'rgb(69,7,254)' : 'rgb(0,255,252,0.2)'} />
             <span style={{ marginRight: 5 }}> </span>
             <Moon color={isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254,0.2)'} />
-          </div>
+          </div> */}
         </Grid>
       </Grid.Container>
     </StyledPageHeader>

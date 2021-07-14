@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
 
   const StyledLink = styled(Link)`
     &:hover {
-      color: #00b0f2 !important;
+      color: #3cf0c8 !important;
     }
   `
 
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
     <StyledPageFooter>
       <StyledContentTop>
         <Grid.Container gap={2} justify="center">
-          <Grid xs={12} sm={8} style={{ marginBottom: 20 }}>
+          <Grid xs={24} sm={12} style={{ marginBottom: 20 }}>
             <div>
               <Text h3>Viralata Finance</Text>
               <StyledLink href="https://viralata.finance#">Website</StyledLink>
@@ -72,22 +72,10 @@ const Footer: React.FC = () => {
               <Spacer y={0.5} />
               <StyledLink href="https://exchange.viralata.finance">Buy</StyledLink>
             </div>
-          </Grid>
-          <Grid xs={12} sm={8} style={{ marginBottom: 20 }}>
-            <div>
-              <Text h3>Dogira Token</Text>
-              <StyledLink href="https://dogira.net/">Website</StyledLink>
-              <Spacer y={0.5} />
-              <StyledLink href="https://t.me/dogiratoken">Telegram</StyledLink>
-              <Spacer y={0.5} />
-              <StyledLink href="https://twitter.com/DogiraOfficial">Twitter</StyledLink>
-              <Spacer y={0.5} />
-              <StyledLink href="https://app.uniswap.org/#/swap?inputCurrency=0x4b86e0295e7d32433ffa6411b82b4f4e56a581e1">Buy</StyledLink>
-            </div>
-          </Grid>
-          <Grid xs={24} sm={8} style={{ marginBottom: 20 }}>
+          </Grid>         
+          <Grid xs={24} sm={12} style={{ marginBottom: 20 }}>
             <StyledSocialMediaLinks>
-              <img src={isDesktop ? '/images/logo-black.png' : '/images/logo.png'} alt="Vira-lata Finance" />
+              <img src={isDesktop ? '/images/logo.png' : '/images/logo.png'} alt="Vira-lata Finance" />
             </StyledSocialMediaLinks>
           </Grid>
         </Grid.Container>

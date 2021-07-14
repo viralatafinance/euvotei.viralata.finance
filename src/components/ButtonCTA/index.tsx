@@ -7,22 +7,24 @@ const ButtonCTA = styled(({ isDark, ...rest }) => <Button {...rest} />)`
   border-radius: 0px !important;
   font-weight: bolder !important;
   font-size: 1em !important;
-  border: 0px !important;
+  border: 1px solid #3cf0c8 !important;
   box-shadow: none !important;
-  margin: 10px 0px 0px !important;
+  margin: 0px 0px 0px !important;
   width: 100% !important;
-  text-transform: none !important;
+  text-transform: uppercase !important;
 
-  background-color: ${(props) => props.isDark ? 'rgb(0,255,252)': 'rgb(69,7,254)'}  !important;
-  color: ${(props) => props.isDark ? '#000': '#fff'}  !important;
+  background-color: ${(props) => props.isDark ? 'rgb(0,0,0)': 'rgb(0,0,0)'}  !important;
+  color: ${(props) => props.isDark ? '#3cf0c8': '#3cf0c8'}  !important;
 
   &:hover {    
-    background-color: ${(props) => props.isDark ? 'rgb(0,255,252)': 'rgb(69,7,254)'}  !important;    
+    background-color: ${(props) => props.isDark ? '#3cf0c8': '#3cf0c8'}  !important;    
+    color: ${(props) => props.isDark ? '#000': '#000'}  !important;
   }
   
   &:disabled {
     background-color:#ddd !important;
     color: #333 !important;
+    border: 0px solid #3cf0c8 !important;
   }
 `
 export default ButtonCTA;

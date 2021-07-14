@@ -220,6 +220,7 @@ const GlobalStyle = createGlobalStyle`
   .neon-words {
     &__word {
       font-size: 1.2rem;  
+      line-height: 1.4rem;
       letter-spacing: 1px;
     }
   }
@@ -276,9 +277,8 @@ const GlobalStyle = createGlobalStyle`
   &__word {
     font-size: 1.5rem;
     text-align: center;
-    line-height: 1.8rem;
-    color: #c6e2ff;
-    animation: neon 1s ease-in-out infinite alternate;    
+    line-height: 2rem;
+    color: #fff;
     margin-bottom: 20px;    
     letter-spacing: 2px;
     
@@ -286,8 +286,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 1.2rem;
       text-align: center;
       line-height: 1.5rem;
-      color: #c6e2ff;
-      animation: neon 1s ease-in-out infinite alternate;    
+      color: #fff; 
       margin-bottom: 20px;    
       letter-spacing: 2px;
     }
@@ -346,47 +345,6 @@ const GlobalStyle = createGlobalStyle`
 
 // animation
 
-@keyframes neon {
-  from {
-    text-shadow:
-    0 0 1px rgba(202,228,225,0.92),
-    0 0 8px rgba(202,228,225,0.34),
-    0 0 2px rgba(30,132,242,0.52),
-    0 0 1px rgba(30,132,242,0.72),
-    0 0 34px rgba(30,132,242,0.78),
-    0 0 19px rgba(30,132,242,0.72);
-  }
-  to {
-    text-shadow:
-    0 0 1px rgba(202,228,225,0.98),
-    0 0 8px rgba(202,228,225,0.42),
-    0 0 2px rgba(30,132,242,0.58),
-    0 0 2px rgba(30,132,242,0.74),
-    0 0 38px rgba(30,132,242,0.88),
-    0 0 15px rgba(30,132,242,0.9);
-  }
-}
-
-@keyframes neon2 {
-  from {
-    text-shadow:
-    0 0 5px rgba(202,228,225,0.92),
-    0 0 28px rgba(202,228,225,0.34),
-    0 0 12px rgba(30,132,242,0.52),
-    0 0 21px rgba(30,132,242,0.72),
-    0 0 34px rgba(30,132,242,0.78),
-    0 0 49px rgba(30,132,242,0.72);
-  }
-  to {
-    text-shadow:
-    0 0 5px rgba(202,228,225,0.98),
-    0 0 28px rgba(202,228,225,0.42),
-    0 0 12px rgba(30,132,242,0.58),
-    0 0 22px rgba(30,132,242,0.74),
-    0 0 38px rgba(30,132,242,0.88),
-    0 0 55px rgba(30,132,242,0.9);
-  }
-}
 
 
 
