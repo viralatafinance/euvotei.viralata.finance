@@ -138,7 +138,7 @@ const Donate = () => {
             <div>
               <img src="/images/blue-min.gif" alt="Vira-lata Finance" />
               <ButtonCTA disabled={claimed || !account || !whitelisted} onClick={() => { mint(2) }}>
-                {!account ? 'CONECTAR CARTEIRA' : !whitelisted ? 'NÃO ELEGÍVEL' : claimed ? 'JÁ RESGATOU' : 'RESGATAR'}
+                {!account ? 'CLIQUE EM CONECTAR CARTEIRA' : !whitelisted ? 'NÃO ELEGÍVEL' : claimed ? 'JÁ RESGATOU' : 'RESGATAR'}
               </ButtonCTA>
             </div>
           </Grid>
@@ -146,7 +146,7 @@ const Donate = () => {
             <div>
               <img src="/images/grey-min.gif" alt="Vira-lata Finance" />
               <ButtonCTA disabled={claimed || !account || !whitelisted} onClick={() => { mint(1) }}>
-                {!account ? 'CONECTAR CARTEIRA' : !whitelisted ? 'NÃO ELEGÍVEL' : claimed ? 'JÁ RESGATOU' : 'RESGATAR'}
+                {!account ? 'CLIQUE EM CONECTAR CARTEIRA' : !whitelisted ? 'NÃO ELEGÍVEL' : claimed ? 'JÁ RESGATOU' : 'RESGATAR'}
               </ButtonCTA>
             </div>
           </Grid>
@@ -154,7 +154,7 @@ const Donate = () => {
             <div>
               <img src="/images/white-min.gif" alt="Vira-lata Finance" />
               <ButtonCTA disabled={claimed || !account || !whitelisted} onClick={() => { mint(0) }}>
-                {!account ? 'CONECTAR CARTEIRA' : !whitelisted ? 'NÃO ELEGÍVEL' : claimed ? 'JÁ RESGATOU' : 'RESGATAR'}
+                {!account ? 'CLIQUE EM CONECTAR CARTEIRA' : !whitelisted ? 'NÃO ELEGÍVEL' : claimed ? 'JÁ RESGATOU' : 'RESGATAR'}
               </ButtonCTA>
             </div>
           </Grid>

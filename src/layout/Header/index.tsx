@@ -30,18 +30,19 @@ const LogoImage = styled.img`
   margin: 0 auto;
 `
 
-const StyledConnect = styled(({ isDark, ...rest }) => <Tag {...rest} />)`
+const StyledConnect = styled(({ isDark, isDesktop, ...rest }) => <Tag {...rest} />)`
   text-align: center;
-  border: 2px solid transparent !important;
-  background: transparent !important;
-  color: ${(props) => (props.isDark ? '#3cf0c8' : '#3cf0c8')} !important;
-  font-size: 16px !important;
+  border: 2px solid #3cf0c8 !important;
+  background: #3cf0c8 !important;
+  color: ${(props) => (props.isDark ? '#000' : '#000')} !important;
+  padding: 15px 20px !important;
+  font-size: 18px !important;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: 2px solid ${(props) => (props.isDark ? 'rgb(0,255,252)' : 'rgb(69,7,254)')};
   height: auto !important;
   border-radius: 6px;
-  display: inline-block;
+  display:  ${(props) => (props.isDesktop ?'inline-block': 'block')} !important;
+  width:  100%;
   font-weight: 700;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -91,10 +92,11 @@ const Header: React.FC = () => {
             alt="Vira-lata Finance"
           />
         </Logo>
-        <Grid xs alignItems="center" justify={isDesktop ? 'flex-end' : 'center'} style={{ marginBottom: isDesktop ? 0 : 20 }}>         
-          <FlexDiv style={{ margin: '0 15px' }}>
+        <Grid xs alignItems="center" justify={isDesktop ? 'flex-end' : 'center'} style={{ marginBottom: isDesktop ? 0 : 50, width: isDesktop ? 'auto' : '100%' }}>         
+          <FlexDiv style={{ margin: '0 15px', width: isDesktop ? 'auto' : '100%', display: isDesktop ? 'flex' : 'block'  }}>
             <StyledConnect
-              isDark={isDark}
+              isDark
+              isDesktop
               onClick={() => {
                 if (account) {
                   accountModal.setVisible(true)
@@ -103,7 +105,7 @@ const Header: React.FC = () => {
                 }
               }}
             >
-              {account ? `${account.substr(0, 4)}...${account.substr(-4)}` : `CONECTAR`}
+              {account ? `${account.substr(0, 4)}...${account.substr(-4)}` : `CONECTAR CARTEIRA`}
             </StyledConnect>
           </FlexDiv>
           {/* <div role="button" aria-hidden="true" style={{ cursor: 'pointer' }} onClick={switchLightMode} onKeyDown={switchLightMode}>
